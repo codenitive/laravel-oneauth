@@ -28,8 +28,23 @@ abstract class Provider
 	{
 		switch ($name)
 		{
+			case 'dropbox' :
+				return new Provider\Dropbox($options);
+				break;
+			case 'flickr' :
+				return new Provider\Flickr($options);
+				break;
+			case 'linkedin' :
+				return new Provider\Linkedin($options);
+				break;
+			case 'tumblr' :
+				return new Provider\Tumblr($options);
+				break;
 			case 'twitter' :
 				return new Provider\Twitter($options);
+				break;
+			case 'vimeo' :
+				return new Provider\Vimeo($options);
 				break;
 		}
 	}
