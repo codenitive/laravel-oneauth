@@ -6,7 +6,7 @@
  * @package     NinjAuth
  * @author      Phil Sturgeon <https://github.com/philsturgeon>
  */
-use \Config, \Event, \Session;
+use \Config;
 
 abstract class Strategy 
 {
@@ -111,34 +111,7 @@ abstract class Strategy
 			'provider' => $strategy->provider->name,
 		);
 
-		$client = Client::where('provider', '=', $user_data['provider'])
-					->where('uid', '=', $user_data['info']['uid'])
-					->first();
-
-		if (is_null($client))
-		{
-			$client = new Client(array(
-				'uid'      => $user_data['info']['uid'],
-				'provider' => $strategy->provider->name,
-			));
-		}
-
-		// Link to user using Auth.
-		if ($logged_in)
-		{
-			$client->user_id = \Auth::user()->id;
-		}
-
-		$client->access_token  = $user_data['token']->access_token ?: null;
-		$client->secret        = $user_data['token']->secret ?: null;
-		$client->refresh_token = $user_data['token']->refresh_token ?: null;
-
-		$client->save();
-
-		Event::fire('oneauth.logged', $user_data);
-		Session::put('oneauth', $user_data);
-
-		return Core::redirect($logged_in ? 'logged_in' : 'registration');
+		return Core::login($user_data);
 	}
 
 	/**
