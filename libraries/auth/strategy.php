@@ -42,7 +42,7 @@ abstract class Strategy
 		'twitter'    => 'OAuth',
 		//'unmagnify'  => 'OAuth2',
 		//'youtube'    => 'OAuth2',
-		//'vimeo'      => 'OAuth',
+		'vimeo'      => 'OAuth',
 		//'windowlive' => 'OAuth2',
 	);
 
