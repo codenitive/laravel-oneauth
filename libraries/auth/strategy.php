@@ -38,7 +38,7 @@ abstract class Strategy
 		//'instagram'  => 'OAuth2',
 		//'linkedin'   => 'OAuth',
 		//'openid'     => 'OpenId',
-		//'tumblr'     => 'OAuth',
+		'tumblr'     => 'OAuth',
 		'twitter'    => 'OAuth',
 		//'unmagnify'  => 'OAuth2',
 		//'youtube'    => 'OAuth2',
