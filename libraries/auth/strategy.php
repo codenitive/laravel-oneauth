@@ -29,7 +29,7 @@ abstract class Strategy
 	 * @var     array
 	 */
 	protected static $providers = array(
-		//'dropbox'    => 'OAuth',
+		'dropbox'    => 'OAuth',
 		//'facebook'   => 'OAuth2',
 		//'flickr'     => 'OAuth',
 		//'foursquare' => 'OAuth2',
