@@ -42,8 +42,6 @@ abstract class Strategy
 		'soundcloud' => 'OAuth2',
 		'tumblr'     => 'OAuth',
 		'twitter'    => 'OAuth',
-		'unmagnify'  => 'OAuth2',
-		'youtube'    => 'OAuth2',
 		'vimeo'      => 'OAuth',
 		'windowlive' => 'OAuth2',
 	);

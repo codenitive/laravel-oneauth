@@ -49,6 +49,16 @@ return array(
 			'key'    => '',
 			'secret' => '',
 		),
+
+		'paypal' => array(
+			'id'     => '',
+			'secret' => '',
+		),
+
+		'soundcloud' => array(
+			'id'     => '',
+			'secret' => '',
+		),
 		
 		'tumblr' => array(
 			'key'    => '',
@@ -60,15 +70,14 @@ return array(
 			'secret' => '',
 		),
 
-		'youtube' => array(
-			'key'   => '',
-			'scope' => 'http://gdata.youtube.com',
+		'vimeo' => array(
+			'key'    => '',
+			'secret' => '',
 		),
-		
-		'openid' => array (
-			'identifier_form_name' => 'openid_identifier',
-			'ax_required' => array('contact/email', 'namePerson/first', 'namePerson/last'),
-			'ax_optional' => array('namePerson/friendly', 'birthDate', 'person/gender', 'contact/country/home'),
+
+		'windowlive' => array(
+			'id'     => '',
+			'secret' => '',
 		),
 	
 	),
