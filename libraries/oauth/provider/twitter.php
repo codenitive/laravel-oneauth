@@ -21,7 +21,7 @@ use OneAuth\OAuth\Provider as OAuth_Provider,
 	OneAuth\OAuth\Consumer,
 	OneAuth\OAuth\Token;
 
-class Twitter extends Provider 
+class Twitter extends OAuth_Provider 
 {
 	public $name = 'twitter';
 	

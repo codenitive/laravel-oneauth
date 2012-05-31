@@ -116,7 +116,7 @@ class Request
 		// Set the version of this request
 		if ($this->required('oauth_version') and ! isset($this->params['oauth_version']))
 		{
-			$this->params['oauth_version'] = OAuth::$version;
+			$this->params['oauth_version'] = Core::$version;
 		}
 		
 		// Set the timestamp of this request
@@ -512,3 +512,4 @@ class Request
 
 		return Core::remote($url, $options);
 	}
+}
