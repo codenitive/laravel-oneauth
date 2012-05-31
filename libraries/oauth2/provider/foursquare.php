@@ -16,6 +16,11 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 class Foursquare extends OAuth2_Provider
 {
 	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'foursquare';
+
+	/**
 	 * @var  string  the method to use when requesting tokens
 	 */
 	public $method = 'POST';

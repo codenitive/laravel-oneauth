@@ -16,6 +16,11 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 class Paypal extends OAuth2_Provider
 {
 	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'paypal';
+
+	/**
 	 * @var  string  default scope (useful if a scope is required for user info)
 	 */
 	protected $scope = array('https://identity.x.com/xidentity/resources/profile/me');

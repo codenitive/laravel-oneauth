@@ -48,7 +48,7 @@ class Core extends Auth
 		{
 			$client = new Client(array(
 				'uid'      => $user_data['info']['uid'],
-				'provider' => $strategy->provider->name,
+				'provider' => $user_data['provider'],
 			));
 		}
 

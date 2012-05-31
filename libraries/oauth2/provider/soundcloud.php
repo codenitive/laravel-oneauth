@@ -14,7 +14,12 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 	OneAuth\OAuth2\Token\Access as Token_Access;
 
 class Soundcloud extends OAuth2_Provider
-{	
+{
+	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'soundcloud';
+
 	/**
 	 * @var  string  the method to use when requesting tokens
 	 */

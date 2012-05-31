@@ -16,6 +16,11 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 class Instagram extends OAuth2_Provider 
 {
 	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'instagram';
+
+	/**
 	 * @var  string  scope separator, most use "," but some like Google are spaces
 	 */
 	public $scope_seperator = '+';

@@ -29,6 +29,11 @@ class Access extends OAuth2_Token
 	protected $refresh_token;
 
 	/**
+	 * @var  string  secret
+	 */
+	protected $secret;
+
+	/**
 	 * @var  string  uid
 	 */
 	protected $uid;

@@ -15,6 +15,11 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 
 class Github extends OAuth2_Provider
 {
+	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'github';
+
 	public function url_authorize()
 	{
 		return 'https://github.com/login/oauth/authorize';

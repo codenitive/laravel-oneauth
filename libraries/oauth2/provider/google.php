@@ -17,6 +17,11 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 class Google extends OAuth2_Provider
 {
 	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'google';
+
+	/**
 	 * @var  string  the method to use when requesting tokens
 	 */
 	public $method = 'POST';

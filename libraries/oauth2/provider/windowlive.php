@@ -15,6 +15,11 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 
 class Windowslive extends OAuth2_Provider
 {
+	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'windowslive';
+
 	protected $method = 'POST';
 	
 	public function __construct(array $options = array())
