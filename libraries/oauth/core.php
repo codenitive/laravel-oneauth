@@ -10,6 +10,8 @@
  * @since      3.0.7
  */
 
+use \Bundle;
+
 class Core
 {
 	/**
@@ -54,7 +56,7 @@ class Core
 
 		if (curl_errno($remote) == 60) 
 		{ 
-			curl_setopt($remote, CURLOPT_CAINFO, PKGPATH .'oauth'.DS.'vendor'.DS.'ca_chain_bundle.crt');
+			curl_setopt($remote, CURLOPT_CAINFO, Bundle::path('oneauth').'vendor'.DS.'ca_chain_bundle.crt');
 			$response = curl_exec($remote);
 		}
 
@@ -98,7 +100,7 @@ class Core
 		if (is_array($input))
 		{
 			// Encode the values of the array
-			return array_map(array('OneAuth\\OAuth\\Core', 'urlencode'), $input);
+			return array_map(array(__NAMESPACE__.'\\Core', 'urlencode'), $input);
 		}
 
 		// Encode the input
@@ -125,7 +127,7 @@ class Core
 		if (is_array($input))
 		{
 			// Decode the values of the array
-			return array_map(array('OneAuth\\OAuth\\Core', 'urldecode'), $input);
+			return array_map(array(__NAMESPACE__.'\\Core', 'urldecode'), $input);
 		}
 
 		// Decode the input

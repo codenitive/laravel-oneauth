@@ -25,7 +25,7 @@ class Oauth extends Auth_Strategy
 		$provider = Provider::make($this->provider);
 		
 		// Create the URL to return the user to
-		$callback = array_get($this->config, 'callback') ?: \URL::to_action(\Config::get('autho::urls.callback', 'oneauth::connect'));
+		$callback = array_get($this->config, 'callback') ?: \URL::to(\Config::get('oneauth::urls.callback', 'connect/callback'));
 		$callback = rtrim($callback, '/').'/'.$this->provider;
 		
 		// Add the callback URL to the consumer
@@ -38,7 +38,7 @@ class Oauth extends Auth_Strategy
 		\Cookie::put('oauth_token', base64_encode(serialize($token)));
 
 		// Redirect to the twitter login page
-		\Redirect::to($provider->authorize_url($token, array(
+		return \Redirect::to($provider->authorize_url($token, array(
 			'oauth_callback' => $callback,
 		)));
 	}
@@ -67,7 +67,7 @@ class Oauth extends Auth_Strategy
 		}
 
 		// Get the verifier
-		$verifier = Input::get('oauth_verifier');
+		$verifier = \Input::get('oauth_verifier');
 
 		// Store the verifier in the token
 		$this->token->verifier($verifier);

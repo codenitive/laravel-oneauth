@@ -344,7 +344,7 @@ class Request
 			{
 				// OAuth Spec 5.4.1
 				// "Parameter names and values are encoded per Parameter Encoding [RFC 3986]."
-				$header[] = OAuth::urlencode($name).'="'.OAuth::urlencode($value).'"';
+				$header[] = Core::urlencode($name).'="'.Core::urlencode($value).'"';
 			}
 		}
 

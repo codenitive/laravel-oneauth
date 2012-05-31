@@ -26,7 +26,7 @@ class Response
 	{
 		if ($body)
 		{
-			$this->params = OAuth::parse_params($body);
+			$this->params = Core::parse_params($body);
 		}
 	}
 
