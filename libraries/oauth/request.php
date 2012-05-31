@@ -93,7 +93,7 @@ class Request
 	 * @param  string  request method
 	 * @param  string  request URL
 	 * @param  array   request parameters
-	 * @uses   OAuth::parse_url
+	 * @uses   Core::parse_url
 	 */
 	public function __construct($method, $url, array $params = null)
 	{
@@ -389,7 +389,7 @@ class Request
 			}
 		}
 
-		return $as_string ? OAuth::normalize_params($params) : $params;
+		return $as_string ? Core::normalize_params($params) : $params;
 	}
 
 	/**
