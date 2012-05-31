@@ -21,6 +21,7 @@ class OneAuth_Create_OneAuths {
 			$table->timestamps();
 			$table->index('access_token');
 			$table->index('user_id');
+			$table->unique(array('provider', 'uid'));
 		});
 	}
 
