@@ -39,7 +39,8 @@ class Core extends Auth
 	 */
 	public static function login($user_data)
 	{
-		$client = Client::where('provider', '=', $user_data['provider'])
+		$logged_in = \Auth::check();
+		$client    = Client::where('provider', '=', $user_data['provider'])
 					->where('uid', '=', $user_data['info']['uid'])
 					->first();
 

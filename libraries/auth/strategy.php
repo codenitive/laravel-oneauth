@@ -106,8 +106,6 @@ abstract class Strategy
 	public static function login_or_register($strategy)
 	{
 		$token     = $strategy->callback();
-		
-		$logged_in = \Auth::check();
 		$user_info = static::get_user_info($strategy, $token);
 
 		$user_data = array(

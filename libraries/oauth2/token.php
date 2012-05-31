@@ -22,9 +22,15 @@ abstract class Token {
 	 */
 	public static function make($type = 'access', array $options = null)
 	{
-		$class = '\\OAuth2\\Token_'.\Inflector::classify($type);
-
-		return new $class($options);
+		switch($type)
+		{
+			case 'access' :
+				return new Token\Access($options);
+				break;
+			case 'authorize' :
+				return new Token\Authorize($options);
+				break;
+		}
 	}
 
 	/**

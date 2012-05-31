@@ -8,11 +8,11 @@
  */
 
 use OneAuth\Auth\Strategy as Auth_Strategy,
-	OneAuth\OAuth2\Consumer,
 	OneAuth\OAuth2\Provider;
 
 class Oauth2 extends Auth_Strategy
 {
+	public $name = 'oauth2';
 	public $provider;
 	
 	public function authenticate()
@@ -28,7 +28,7 @@ class Oauth2 extends Auth_Strategy
 			$provider->callback = $callback;
 		}
 		
-		$provider->authorize(array(
+		return $provider->authorize(array(
 			'redirect_uri' => $provider->callback
 		));
 	}
