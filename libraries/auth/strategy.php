@@ -6,7 +6,7 @@
  * @package     NinjAuth
  * @author      Phil Sturgeon <https://github.com/philsturgeon>
  */
-use \Config, \Event;
+use \Config, \Event, \Session;
 
 abstract class Strategy 
 {
@@ -102,6 +102,7 @@ abstract class Strategy
 	{
 		$token     = $strategy->callback();
 		
+		$logged_in = \Auth::check();
 		$user_info = static::get_user_info($strategy, $token);
 
 		$user_data = array(
@@ -109,57 +110,35 @@ abstract class Strategy
 			'info'     => $user_info,
 			'provider' => $strategy->provider->name,
 		);
-		
-		if (Auth::check())
+
+		$client = Client::where('provider', '=', $user_data['provider'])
+					->where('uid', '=', $user_data['info']['uid'])
+					->first();
+
+		if (is_null($client))
 		{
-			// User already logged in 
-			$user_id    = Auth::user()->id;
-			$oneauth    = Model::where('user_id', '=', $user_id);
-			$num_linked = $oneauth->count();
-		
-			// Allowed multiple providers, or not authed yet?
-			if (0 === $num_linked or true === Config::get('oneauth::api.link_multiple_providers'))
-			{
-				try 
-				{
-					$user_auth->link_account($user_data);
-					
-					Event::fire('oneauth.link_authentication', $user_data);
-				}
-				catch (\Exception $e)
-				{
-					throw new Strategy\Exception("Unable to retrieve valid user information from requested access token");
-				}
-				
-				// Attachment went ok so we'll redirect
-				Core::redirect('logged_in');
-			}
-			else
-			{
-				$providers = array_keys($accounts);
-
-				throw new Strategy\Exception(sprintf('This user is already linked to "%s".', $providers[0]));
-			}
+			$client = new Client(array(
+				'uid'      => $user_data['info']['uid'],
+				'provider' => $strategy->provider->name,
+			));
 		}
-		// The user exists, so send him on his merry way as a user
-		else 
+
+		// Link to user using Auth.
+		if ($logged_in)
 		{
-			try 
-			{
-				$user_auth->login_token($user_data);
-
-				Event::fire('oneauth.link_authentication', $user_data);
-
-				// credentials ok, go right in
-				Core::redirect('logged_in');
-			}
-			catch (\Exception $e)
-			{
-				Session::set('oneauth', $user_data);
-
-				Core::redirect('registration');
-			}
+			$client->user_id = \Auth::user()->id;
 		}
+
+		$client->access_token  = $user_data['token']->access_token ?: null;
+		$client->secret        = $user_data['token']->secret ?: null;
+		$client->refresh_token = $user_data['token']->refresh_token ?: null;
+
+		$client->save();
+
+		Event::fire('oneauth.logged', $user_data);
+		Session::put('oneauth', $user_data);
+
+		return Core::redirect($logged_in ? 'logged_in' : 'registration');
 	}
 
 	/**

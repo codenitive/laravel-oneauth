@@ -13,7 +13,7 @@ use OneAuth\Auth\Strategy as Auth_Strategy,
 
 class Oauth extends Auth_Strategy
 {
-	public $name = 'OAuth';
+	public $name = 'oauth';
 	public $provider;
 	
 	public function authenticate()
@@ -57,7 +57,7 @@ class Oauth extends Auth_Strategy
 			$this->token = unserialize(base64_decode($token));
 		}
 			
-		if ($this->token and $this->token->access_token !== Input::get('oauth_token'))
+		if ($this->token and $this->token->access_token !== \Input::get('oauth_token'))
 		{   
 			// Delete the token, it is not valid
 			\Cookie::delete('oauth_token');

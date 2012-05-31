@@ -19,6 +19,7 @@
 
 use OneAuth\OAuth\Provider as OAuth_Provider,
 	OneAuth\OAuth\Consumer,
+	OneAuth\OAuth\Request,
 	OneAuth\OAuth\Token;
 
 class Twitter extends OAuth_Provider 
@@ -70,5 +71,4 @@ class Twitter extends OAuth_Provider
 			),
 		);
 	}
-
 }

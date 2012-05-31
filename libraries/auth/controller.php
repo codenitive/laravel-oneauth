@@ -19,6 +19,7 @@ class Controller extends \Controller
 	 */
 	public function action_session($provider = null)
 	{
+		// if provider data is somehow empty, it might not came from a provider.
 		if (empty($provider))
 		{
 			return \Response::error('404');

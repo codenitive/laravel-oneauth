@@ -40,7 +40,7 @@ abstract class Token
 	protected $name;
 
 	/**
-	 * @var  string  token key
+	 * @var  string  access token key
 	 */
 	protected $access_token;
 
@@ -48,6 +48,11 @@ abstract class Token
 	 * @var  string  token secret
 	 */
 	protected $secret;
+
+	/**
+	 * @var  string  refresh token key
+	 */
+	protected $refresh_token;
 
 	/**
 	 * @var  string  uid

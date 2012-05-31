@@ -6,7 +6,7 @@
  * @package     NinjAuth
  * @author      Phil Sturgeon <https://github.com/philsturgeon>
  */
-use \Auth, \Exception;
+use \Auth, \Config, \Exception;
 
 class Core extends Auth
 {
