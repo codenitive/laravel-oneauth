@@ -53,7 +53,7 @@ class Linkedin extends OAuth_Provider
 		// Sign the request using the consumer and token
 		$request->sign($this->signature, $consumer, $token);
 		
-		$user = $this->parse($request->execute(), 'xml')->to_array();
+		$user = $this->parse($request->execute(), 'xml');
 		
 		// Create a response from the request
 		return array(
