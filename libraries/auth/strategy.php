@@ -31,7 +31,7 @@ abstract class Strategy
 	protected static $providers = array(
 		'dropbox'    => 'OAuth',
 		//'facebook'   => 'OAuth2',
-		//'flickr'     => 'OAuth',
+		'flickr'     => 'OAuth',
 		//'foursquare' => 'OAuth2',
 		//'github'     => 'OAuth2',
 		//'google'     => 'OAuth2',
