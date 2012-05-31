@@ -36,7 +36,7 @@ abstract class Strategy
 		//'github'     => 'OAuth2',
 		//'google'     => 'OAuth2',
 		//'instagram'  => 'OAuth2',
-		//'linkedin'   => 'OAuth',
+		'linkedin'   => 'OAuth',
 		//'openid'     => 'OpenId',
 		'tumblr'     => 'OAuth',
 		'twitter'    => 'OAuth',
