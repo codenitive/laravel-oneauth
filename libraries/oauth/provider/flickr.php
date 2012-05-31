@@ -24,7 +24,6 @@ use OneAuth\OAuth\Provider as OAuth_Provider,
 
 class Flickr extends OAuth_Provider 
 {
-
 	public $name = 'flickr';
 
 	public function url_request_token()

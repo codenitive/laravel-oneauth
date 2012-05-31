@@ -30,20 +30,22 @@ abstract class Strategy
 	 */
 	protected static $providers = array(
 		'dropbox'    => 'OAuth',
-		//'facebook'   => 'OAuth2',
+		'facebook'   => 'OAuth2',
 		'flickr'     => 'OAuth',
-		//'foursquare' => 'OAuth2',
-		//'github'     => 'OAuth2',
-		//'google'     => 'OAuth2',
-		//'instagram'  => 'OAuth2',
+		'foursquare' => 'OAuth2',
+		'github'     => 'OAuth2',
+		'google'     => 'OAuth2',
+		'instagram'  => 'OAuth2',
 		'linkedin'   => 'OAuth',
 		//'openid'     => 'OpenId',
+		'paypal'     => 'OAuth2',
+		'soundcloud' => 'OAuth2',
 		'tumblr'     => 'OAuth',
 		'twitter'    => 'OAuth',
-		//'unmagnify'  => 'OAuth2',
-		//'youtube'    => 'OAuth2',
+		'unmagnify'  => 'OAuth2',
+		'youtube'    => 'OAuth2',
 		'vimeo'      => 'OAuth',
-		//'windowlive' => 'OAuth2',
+		'windowlive' => 'OAuth2',
 	);
 
 	/**
@@ -85,6 +87,9 @@ abstract class Strategy
 		{
 			case 'OAuth' :
 				return new Strategy\Oauth($provider);
+				break;
+			case 'OAuth2' :
+				return new Strategy\Oauth2($provider);
 				break;
 		}
 	}

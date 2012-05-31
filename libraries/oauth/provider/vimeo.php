@@ -65,8 +65,8 @@ class Vimeo extends OAuth_Provider
 			'image'       => $profile_image->_content,
 			'description' => $user->bio,
 			'urls'        => array(
-				'Website' => $url,
-				'Vimeo'   => $user->profileurl,
+				'website' => $url,
+				'vimeo'   => $user->profileurl,
 			),
 		);
 	}

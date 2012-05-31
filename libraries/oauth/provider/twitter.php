@@ -66,8 +66,8 @@ class Twitter extends OAuth_Provider
 			'image'       => $user->profile_image_url,
 			'description' => $user->description,
 			'urls'        => array(
-				'Website' => $user->url,
-				'Twitter' => 'http://twitter.com/'.$user->screen_name,
+				'website' => $user->url,
+				'twitter' => 'http://twitter.com/'.$user->screen_name,
 			),
 		);
 	}
