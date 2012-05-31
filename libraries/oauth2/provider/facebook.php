@@ -15,6 +15,11 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 
 class Facebook extends OAuth2_Provider
 {  
+	/**
+	 * @var  string  provider name
+	 */
+	public $name = 'facebook';
+
 	public $scope = array('offline_access', 'email', 'read_stream');
 
 	public function url_authorize()
