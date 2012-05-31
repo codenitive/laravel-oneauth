@@ -63,7 +63,7 @@ class Linkedin extends OAuth_Provider
 			'description' => $user['headline'],
 			'location'    => array_get($user, 'location.name'),
 			'urls'        => array(
-			  'Linked In' => $user['public-profile-url'],
+				'LinkedIn' => $user['public-profile-url'],
 			),
 		);
 	}
