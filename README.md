@@ -10,13 +10,14 @@ Installation with Laravel Artisan
 
 	php artisan bundle:install oneauth
 	
+### Bundle Registration
+
+	'oneauth' => array('auto' => true),
+
 Run the migration
 
 	php artisan migrate
 
-### Bundle Registration
-
-	'oneauth' => array('auto' => true),
 
 For detail explaination please read the documentation in `docs` folder.
 
