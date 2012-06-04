@@ -6,7 +6,7 @@ OAuth, OAuth2 and OpenID Auth bundle for Laravel
 
 ## Installation
 
-Installation with Laravel Artisan
+### Installation with Laravel Artisan
 
 	php artisan bundle:install oneauth
 	
@@ -14,7 +14,7 @@ Installation with Laravel Artisan
 
 	'oneauth' => array('auto' => true),
 
-Run the migration
+### Run the migration
 
 	php artisan migrate
 
