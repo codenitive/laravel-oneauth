@@ -11,6 +11,7 @@
  */
 
 use OneAuth\OAuth2\Provider as OAuth2_Provider,
+	OneAuth\OAuth2\Request,
 	OneAuth\OAuth2\Token\Access as Token_Access,
 	OneAuth\OAuth2\Exception;
 
@@ -95,11 +96,13 @@ class Google extends OAuth2_Provider
 
 	public function get_user_info(Token_Access $token)
 	{
-		$url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=1&alt=json&'.http_build_query(array(
+		$request  = Request::make('resource', 'GET', 'https://www.google.com/m8/feeds/contacts/default/full', array(
 			'access_token' => $token->access_token,
+			'max-results'  => 1,
+			'alt'          => 'json',
 		));
 		
-		$response = json_decode(file_get_contents($url), true);
+		$response = json_decode($request->execute(), true);
 		
 		// Fetch data parts
 		$email = array_get($response, 'feed.id.$t');

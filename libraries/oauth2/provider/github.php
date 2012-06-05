@@ -11,6 +11,7 @@
  */
 
 use OneAuth\OAuth2\Provider as OAuth2_Provider,
+	OneAuth\OAuth2\Request,
 	OneAuth\OAuth2\Token\Access as Token_Access;
 
 class Github extends OAuth2_Provider
@@ -36,7 +37,11 @@ class Github extends OAuth2_Provider
 			'access_token' => $token->access_token,
 		));
 
-		$user = json_decode(file_get_contents($url));
+		$request = Request::make('resource', 'GET', 'https://api.github.com/user', array(
+			'access_token' => $token->access_token,
+		));
+
+		$user = json_decode($request->execute());
 
 		// Create a response from the request
 		return array(

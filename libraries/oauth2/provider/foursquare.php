@@ -11,6 +11,7 @@
  */
 
 use OneAuth\OAuth2\Provider as OAuth2_Provider,
+	OneAuth\OAuth2\Request,
 	OneAuth\OAuth2\Token\Access as Token_Access;
 
 class Foursquare extends OAuth2_Provider
@@ -37,13 +38,13 @@ class Foursquare extends OAuth2_Provider
 
 	public function get_user_info(Token_Access $token)
 	{
-		$url = 'https://api.foursquare.com/v2/users/self?'.http_build_query(array(
+		$request  = Request::make('resource', 'GET', 'https://api.foursquare.com/v2/users/self', array(
 			'oauth_token' => $token->access_token,
 		));
 
-		$response = json_decode(file_get_contents($url));
+		$response = json_decode($request->execute());
 
-		$user = $response->response->user;
+		$user     = $response->response->user;
 
 		// Create a response from the request
 		return array(

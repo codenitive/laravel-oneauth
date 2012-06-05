@@ -11,6 +11,7 @@
  */
 
 use OneAuth\OAuth2\Provider as OAuth2_Provider,
+	OneAuth\OAuth2\Request,
 	OneAuth\OAuth2\Token\Access as Token_Access;
 
 class Facebook extends OAuth2_Provider
@@ -34,11 +35,11 @@ class Facebook extends OAuth2_Provider
 
 	public function get_user_info(Token_Access $token)
 	{
-		$url = 'https://graph.facebook.com/me?'.http_build_query(array(
+		$request = Request::make('resource', 'GET', 'https://graph.facebook.com/me', array(
 			'access_token' => $token->access_token,
 		));
-
-		$user = json_decode(file_get_contents($url));
+		
+		$user = json_decode($request->execute());
 
 		// Create a response from the request
 		return array(

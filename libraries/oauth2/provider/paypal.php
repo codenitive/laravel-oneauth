@@ -11,6 +11,7 @@
  */
 
 use OneAuth\OAuth2\Provider as OAuth2_Provider,
+	OneAuth\OAuth2\Request,
 	OneAuth\OAuth2\Token\Access as Token_Access;
 
 class Paypal extends OAuth2_Provider
@@ -42,12 +43,12 @@ class Paypal extends OAuth2_Provider
 
 	public function get_user_info(Token_Access $token)
 	{
-		$url = 'https://identity.x.com/xidentity/resources/profile/me?' . http_build_query(array(
+		$request  = Request::make('resource', 'GET', 'https://identity.x.com/xidentity/resources/profile/me', array(
 			'oauth_token' => $token->access_token
 		));
 
-		$user = json_decode(file_get_contents($url));
-		$user = $user->identity;
+		$response = json_decode($request->execute());
+		$user     = $response->identity;
 
 		return array(
 			'uid'         => $user['userId'],

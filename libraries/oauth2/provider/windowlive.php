@@ -11,6 +11,7 @@
  */
 
 use OneAuth\OAuth2\Provider as OAuth2_Provider,
+	OneAuth\OAuth2\Request,
 	OneAuth\OAuth2\Token\Access as Token_Access;
 
 class Windowslive extends OAuth2_Provider
@@ -60,12 +61,12 @@ class Windowslive extends OAuth2_Provider
 	public function get_user_info(Token_Access $token)
 	{
 		// define the get user information token
-		$url = 'https://apis.live.net/v5.0/me?'.http_build_query(array(
+		$request = Request::make('resource', 'GET', 'https://apis.live.net/v5.0/me', array(
 			'access_token' => $token->access_token,
 		));
 		
 		// perform network request
-		$user = json_decode(file_get_contents($url));
+		$user = json_decode($request->execute());
 
 		// create a response from the request and return it
 		return array(
