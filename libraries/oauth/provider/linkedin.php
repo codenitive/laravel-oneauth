@@ -53,7 +53,7 @@ class Linkedin extends OAuth_Provider
 		// Sign the request using the consumer and token
 		$request->sign($this->signature, $consumer, $token);
 		
-		$user = json_decode($request->execute()->body, true);
+		$user = json_decode($request->execute(), true);
 
 		// Split the profile url to get the user's nickname
 		$split_url = explode('/', $user['publicProfileUrl']);
@@ -61,13 +61,13 @@ class Linkedin extends OAuth_Provider
 		// Create a response from the request
 		return array(
 			'uid'         => $user['id'],
-			'name'        => $user['first-name'].' '.$user['last-name'],
+			'name'        => $user['firstName'].' '.$user['lastName'],
 			'image'       => $user['pictureUrl'],
 			'nickname'    => end($split_url),
 			'description' => $user['headline'],
 			'location'    => array_get($user, 'location.name'),
 			'urls'        => array(
-				'linkedin' => $user['public-profile-url'],
+				'linkedin' => $user['publicProfileUrl'],
 			),
 		);
 	}
