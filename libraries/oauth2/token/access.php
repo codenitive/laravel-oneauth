@@ -9,7 +9,7 @@
  * @copyright  (c) 2012 HappyNinjas Ltd
  */
 
-use OneAuth\OAuth2\Token as OAuth2_Token;
+use OneAuth\OAuth2\Exception, OneAuth\OAuth2\Token as OAuth2_Token;
 
 class Access extends OAuth2_Token
 {

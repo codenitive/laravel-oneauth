@@ -82,6 +82,7 @@ class Core
 
 		return $response;
 	}
+	
 	/**
 	 * RFC3986 compatible version of urlencode. Passing an array will encode
 	 * all of the values in the array. Array keys will not be encoded.

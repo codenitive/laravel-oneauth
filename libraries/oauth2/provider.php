@@ -180,7 +180,7 @@ abstract class Provider
 		switch ($params['grant_type'])
 		{
 			case 'authorization_code':
-				$params['code'] = $code;
+				$params['code']         = $code;
 				$params['redirect_uri'] = array_get($options, 'redirect_uri', $this->redirect_uri);
 			break;
 			
@@ -191,45 +191,15 @@ abstract class Provider
 
 		$response = null;	
 		$url      = $this->url_access_token();
-		
-		switch ($this->method)
-		{
-			case 'GET':
-			
-				// Need to switch to Request library, but need to test it on one that works
-				$url .= '?'.http_build_query($params);
-				$response = file_get_contents($url);
-				
-				parse_str($response, $return); 
-			break;
 
-			case 'POST':
-				
-				$postdata = http_build_query($params);
-				$opts     = array(
-					'http' => array(
-						'method'  => 'POST',
-						'header'  => 'Content-type: application/x-www-form-urlencoded',
-						'content' => $postdata
-					)
-				);
+		$request  = Request::make('access', $this->method, $url, $params);
+		$response = $request->execute();
 
-				$context  = stream_context_create($opts);
-				$response = file_get_contents($url, false, $context);
-				
-				$return   = get_object_vars(json_decode($response));
-
-			break;
-
-			default:
-				throw new Exception("Method '{$this->method}' must be either GET or POST");
-		}
-
-		if (isset($return['error']))
+		if (isset($response->error))
 		{
 			throw new Exception($return);
 		}
 
-		return Token::make('access', $return);
+		return Token::make('access', $response->params);
 	}
 }
