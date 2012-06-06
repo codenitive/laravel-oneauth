@@ -60,7 +60,7 @@ class Oauth extends Auth_Strategy
 		if ($this->token and $this->token->access_token !== \Input::get('oauth_token'))
 		{   
 			// Delete the token, it is not valid
-			\Cookie::delete('oauth_token');
+			\Cookie::forget('oauth_token');
 
 			// Send the user back to the beginning
 			throw new Exception('invalid token after coming back to site');
