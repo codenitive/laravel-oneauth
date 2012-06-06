@@ -68,9 +68,8 @@ class Google extends OAuth2_Provider
 		$options['scope'] = array_merge(
 			
 			// We need this default feed to get the authenticated users basic information
-			// array('https://www.googleapis.com/auth/plus.me'),
-			array('https://www.google.com/m8/feeds'),
-			
+			array('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'),
+
 			// And take either a string and array it, or empty array to merge into
 			(array) array_get($options, 'scope', array())
 		);
@@ -96,28 +95,23 @@ class Google extends OAuth2_Provider
 
 	public function get_user_info(Token_Access $token)
 	{
-		$request  = Request::make('resource', 'GET', 'https://www.google.com/m8/feeds/contacts/default/full', array(
+		$request  = Request::make('resource', 'GET', 'https://www.googleapis.com/oauth2/v1/userinfo', array(
 			'access_token' => $token->access_token,
-			'max-results'  => 1,
-			'alt'          => 'json',
 		));
 		
-		$response = json_decode($request->execute(), true);
-		
-		// Fetch data parts
-		$email = array_get($response, 'feed.id.$t');
-		$name  = array_get($response, 'feed.author.0.name.$t');
-		$name  == '(unknown)' and $name = $email;
+		$user     = json_decode($request->execute(), true);
 		
 		return array(
-			'uid'         => $email,
-			'nickname'    => \Str::slug($name, '-'),
-			'name'        => $name,
-			'email'       => $email,
+			'uid'         => $user['email'],
+			'nickname'    => \Str::slug($user['name'], '-'),
+			'name'        => $user['name'] . ' ' . $user['family_name'],
+			'email'       => $user['email'],
 			'location'    => null,
-			'image'       => null,
+			'image'       => $user['picture'],
 			'description' => null,
-			'urls'        => array(),
+			'urls'        => array(
+				'googleplus' => $user['link'],
+			),
 		);
 	}
 }

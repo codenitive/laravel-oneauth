@@ -228,6 +228,11 @@ class Request
 			$url = "{$url}?{$query}";
 		}
 
-		return Core::remote($url, $options);
+		$response = Core::remote($url, $options);
+
+		// check if it's a json string
+		if ($this->name === 'access' and strpos(trim($response), '{') === 0) $response = http_build_query(json_decode($response, true));
+
+		return $response;
 	}
 }
