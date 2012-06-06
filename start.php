@@ -8,7 +8,14 @@ Autoloader::namespaces(array(
 
 Event::listen('oneauth.logged', function ($client, $user_data)
 {
-	// do something when client logged in.
+	// if user already logged in, don't do anything
+	if (\Auth::check()) return ;
+
+	// OneAuth should login the user if user exist and is not logged in
+	if (is_numeric($client->user_id) and $client->user_id > 0)
+	{
+		\Auth::login($client->user_id);
+	}
 });
 
 Event::listen('oneauth.sync', function ($user_id)
