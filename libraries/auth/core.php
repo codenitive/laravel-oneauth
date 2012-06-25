@@ -39,7 +39,6 @@ class Core extends Auth
 	 */
 	public static function login($user_data)
 	{
-		$logged_in = \Auth::check();
 		$client    = Client::where('provider', '=', $user_data['provider'])
 					->where('uid', '=', $user_data['info']['uid'])
 					->first();
@@ -53,7 +52,7 @@ class Core extends Auth
 		}
 
 		// Link to user using Auth.
-		if ($logged_in)
+		if (\Auth::check())
 		{
 			$client->user_id = \Auth::user()->id;
 		}
@@ -67,7 +66,7 @@ class Core extends Auth
 		Event::fire('oneauth.logged', array($client, $user_data));
 		Session::put('oneauth', $user_data);
 
-		return Core::redirect($logged_in ? 'logged_in' : 'registration');
+		return Core::redirect(\Auth::check() ? 'logged_in' : 'registration');
 	}
 
 	/**
