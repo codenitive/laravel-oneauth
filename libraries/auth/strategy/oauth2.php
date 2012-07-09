@@ -8,7 +8,8 @@
  */
 
 use OneAuth\Auth\Strategy as Auth_Strategy,
-	OneAuth\OAuth2\Provider;
+	OneAuth\OAuth2\Provider,
+	OneAuth\OAuth2\Exception as OAuth2_Exception;
 
 class Oauth2 extends Auth_Strategy
 {
@@ -35,9 +36,15 @@ class Oauth2 extends Auth_Strategy
 	
 	public function callback()
 	{
-		// Load the provider
-		$this->provider = Provider::make($this->provider, $this->config);
-		
-		return $this->provider->access(\Input::get('code'));
+		try {
+			// Load the provider
+			$this->provider = Provider::make($this->provider, $this->config);
+			
+			return $this->provider->access(\Input::get('code'));
+		}
+		catch (OAuth2_Exception $e)
+		{
+			throw new Exception($e->getMessage());
+		}
 	}
 }

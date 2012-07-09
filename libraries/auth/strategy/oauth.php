@@ -56,6 +56,11 @@ class Oauth extends Auth_Strategy
 			// Get the token from storage
 			$this->token = unserialize(base64_decode($token));
 		}
+
+		if ( ! property_exists($this, 'token'))
+		{
+			throw new Exception('Invalid token');
+		}
 			
 		if ($this->token and $this->token->access_token !== \Input::get('oauth_token'))
 		{   
