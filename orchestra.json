@@ -1,0 +1,10 @@
+{
+	"name"        : "OneAuth",
+	"description" : "OAuth, OAuth2 and OpenID Auth bundle for Laravel",
+	"author"      : "Mior Muhammad Zaki",
+	"url"         : "http://bundles.laravel.com/bundle/oneauth",
+	"version"	  : "0.1.0",
+	"config"      : {
+		"handles" : "oneauth"
+	}
+}
