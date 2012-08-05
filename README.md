@@ -17,8 +17,10 @@ OAuth, OAuth2 and OpenID Auth bundle for Laravel
 
 	php artisan migrate
 
+# OneAuth Documentation
 
-For detail explaination please read the documentation in `docs` folder.
+OneAuth Bundle come with an offline documentation, to view this please download and enable `bundocs` bundle, 
+see [Bundocs Bundle](http://bundles.laravel.com/bundle/bundocs) for more detail.
 
 ## Contributors
 
