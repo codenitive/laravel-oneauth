@@ -24,12 +24,12 @@ class Paypal extends OAuth2_Provider
 	/**
 	 * @var  string  default scope (useful if a scope is required for user info)
 	 */
-	protected $scope = array('https://identity.x.com/xidentity/resources/profile/me');
+	protected $scope = 'https://identity.x.com/xidentity/resources/profile/me';
 
 	/**
 	 * @var  string  the method to use when requesting tokens
 	 */
-	protected $method = 'POST';
+	protected $method = 'POST_QUERY';
 
 	public function url_authorize()
 	{
@@ -48,16 +48,17 @@ class Paypal extends OAuth2_Provider
 		));
 
 		$response = json_decode($request->execute());
+
 		$user     = $response->identity;
 
 		return array(
-			'uid'         => $user['userId'],
-			'nickname'    => \Str::slug($user['fullName'], '-'),
-			'name'        => $user['fullName'],
-			'first_name'  => $user['firstName'],
-			'last_name'   => $user['lastName'],
-			'email'       => $user['emails'][0],
-			'location'    => $user->addresses[0],
+			'uid'         => $user->userId,
+			'nickname'    => \Str::slug($user->fullName, '-'),
+			'name'        => $user->fullName,
+			'first_name'  => $user->firstName,
+			'last_name'   => $user->lastName,
+			'email'       => $user->emails[0],
+			'location'    => isset($user->addresses) ? $user->addresses[0] : '',
 			'image'       => null,
 			'description' => null,
 			'urls'        => array(

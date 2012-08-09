@@ -107,7 +107,7 @@ abstract class Provider
 		
 		$this->callback      = array_get($options, 'callback');
 		$this->client_secret = array_get($options, 'secret');
-		$this->scope         = array_get($options, 'scope');
+		$this->scope         = array_get($options, 'scope', $this->scope);
 		
 		$this->redirect_uri  = URL::current();
 	}

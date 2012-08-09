@@ -211,12 +211,19 @@ class Request
 			$options[CURLOPT_SSL_VERIFYPEER] = false;
 		}
 
-		if ($this->method === 'POST')
+		if (substr($this->method, 0, 4) === 'POST')
 		{
 			// Send the request as a POST
 			$options[CURLOPT_POST] = true;
+			$options[CURLOPT_VERBOSE] = true;
+			$as_string = false;
 
-			if ($post = $this->as_query(null))
+			if ($this->method === 'POST_QUERY')
+			{
+				$as_string = true;
+			}
+
+			if ($post = $this->as_query($as_string))
 			{
 				// Attach the post fields to the request
 				$options[CURLOPT_POSTFIELDS] = $post;
