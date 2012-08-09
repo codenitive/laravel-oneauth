@@ -215,7 +215,6 @@ class Request
 		{
 			// Send the request as a POST
 			$options[CURLOPT_POST] = true;
-			$options[CURLOPT_VERBOSE] = true;
 			$as_string = false;
 
 			if ($this->method === 'POST_QUERY')
