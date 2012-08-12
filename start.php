@@ -26,12 +26,12 @@ Autoloader::namespaces(array(
 Event::listen('oneauth.logged', function ($client, $user_data)
 {
 	// if user already logged in, don't do anything
-	if (\Auth::check()) return ;
+	if (IoC::resolve('oneauth.driver: auth.check')) return ;
 
 	// OneAuth should login the user if user exist and is not logged in
 	if (is_numeric($client->user_id) and $client->user_id > 0)
 	{
-		\Auth::login($client->user_id);
+		IoC::resolve('oneauth.driver: auth.login', array($client->user_id));
 	}
 });
 
@@ -39,3 +39,38 @@ Event::listen('oneauth.sync', function ($user_id)
 {
 	return OneAuth\Auth\Core::sync($user_id);
 });
+
+/*
+|--------------------------------------------------------------------------
+| OneAuth IoC
+|--------------------------------------------------------------------------
+|
+| Register Auth adapter as IoC, allow it to be replaced by any Authentication
+| bundle that doesn't use Laravel\Auth\Drivers
+ */
+if ( ! IoC::registered('oneauth.driver: auth.check'))
+{
+	// Check whether current user is logged-in to the system or a guest
+	IoC::register('oneauth.driver: auth.check', function ()
+	{
+		return Auth::check();
+	});
+}
+
+if ( ! IoC::registered('oneauth.driver: auth.user'))
+{
+	// Get logged in user, if the user doesn't logged in yet, return null
+	IoC::register('oneauth.driver: auth.user', function ()
+	{
+		return Auth::user();
+	});
+}
+
+if ( ! IoC::registered('oneauth.driver: auth.login'))
+{
+	// Login the user by users.id
+	IoC::register('oneauth.driver: auth.login', function ($user_id)
+	{
+		return Auth::login($user_id);
+	});
+}

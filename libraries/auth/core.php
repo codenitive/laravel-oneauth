@@ -6,9 +6,9 @@
  * @package     NinjAuth
  * @author      Phil Sturgeon <https://github.com/philsturgeon>
  */
-use \Auth, \Config, \Event, \Exception, \Session;
+use \Config, \Event, \Exception, \IoC, \Redirect, \Session;
 
-class Core extends Auth
+class Core
 {
 	/**
 	 * Redirect user based on type
@@ -26,7 +26,7 @@ class Core extends Auth
 			throw new Exception(__METHOD__.": Unable to redirect using {$type} type.");
 		}
 		
-		return \Redirect::to($path);
+		return Redirect::to($path);
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Core extends Auth
 	 */
 	public static function login($user_data)
 	{
-		$client    = Client::where('provider', '=', $user_data['provider'])
+		$client = Client::where('provider', '=', $user_data['provider'])
 					->where('uid', '=', $user_data['info']['uid'])
 					->first();
 
@@ -52,9 +52,9 @@ class Core extends Auth
 		}
 
 		// Link to user using Auth.
-		if (\Auth::check())
+		if ( ! is_null($user = IoC::resolve('oneauth.driver: auth.user')))
 		{
-			$client->user_id = \Auth::user()->id;
+			$client->user_id = $user->id;
 		}
 
 		$client->access_token  = $user_data['token']->access_token ?: null;
@@ -66,7 +66,7 @@ class Core extends Auth
 		Event::fire('oneauth.logged', array($client, $user_data));
 		Session::put('oneauth', $user_data);
 
-		return Core::redirect(\Auth::check() ? 'logged_in' : 'registration');
+		return Core::redirect(IoC::resolve('oneauth.driver: auth.check') ? 'logged_in' : 'registration');
 	}
 
 	/**
