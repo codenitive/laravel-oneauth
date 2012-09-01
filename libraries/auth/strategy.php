@@ -8,7 +8,7 @@
  */
 use \Config;
 
-abstract class Strategy 
+abstract class Strategy
 {
 	public $provider = null;
 	public $config   = array();
@@ -20,15 +20,16 @@ abstract class Strategy
 	 * @var     string
 	 */
 	public $name     = null;
-	
+
 	/**
 	 * List of available provider
-	 * 
+	 *
 	 * @static
 	 * @access  protected
 	 * @var     array
 	 */
 	protected static $providers = array(
+		'basecamp'   => 'OAuth2',
 		'dropbox'    => 'OAuth',
 		'facebook'   => 'OAuth2',
 		'flickr'     => 'OAuth',
@@ -55,7 +56,7 @@ abstract class Strategy
 	public function __construct($provider)
 	{
 		$this->provider = $provider;
-		
+
 		$this->config   = Config::get("oneauth::api.providers.{$provider}", null);
 
 		if (is_null($this->config))
