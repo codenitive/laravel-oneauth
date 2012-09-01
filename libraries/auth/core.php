@@ -25,7 +25,7 @@ class Core
 		{
 			throw new Exception(__METHOD__.": Unable to redirect using {$type} type.");
 		}
-		
+
 		return Redirect::to($path);
 	}
 
@@ -64,6 +64,17 @@ class Core
 		$client->save();
 
 		Event::fire('oneauth.logged', array($client, $user_data));
+
+		$session_data = array(
+		    'access_token' => $user_data['token']->access_token,
+		    'expires' => $user_data['token']->expires,
+		    'refresh_token' => $user_data['token']->refresh_token,
+		    'secret' => $user_data['token']->secret,
+		    'uid' => $user_data['token']->uid,
+		    'user' => $user_data['token']->user,
+		);
+		$user_data['token'] = $session_data;
+
 		Session::put('oneauth', $user_data);
 
 		return Core::redirect(IoC::resolve('oneauth.driver: auth.check') ? 'logged_in' : 'registration');
