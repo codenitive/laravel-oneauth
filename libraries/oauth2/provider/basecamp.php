@@ -1,13 +1,12 @@
 <?php namespace OneAuth\OAuth2\Provider;
 
 /**
- * Ported from FuelPHP \OAuth2 package
+ * Basecamp oAuth2
  *
- * @package    FuelPHP/OAuth2
+ * @package    OneAuth
  * @category   Provider
- * @author     Phil Sturgeon
- * @copyright  (c) 2012 HappyNinjas Ltd
- * @license    http://philsturgeon.co.uk/code/dbad-license
+ * @author     Chris Fidao
+ * @license    http://opensource.org/licenses/mit-license.php
  */
 
 use OneAuth\OAuth2\Provider as OAuth2_Provider,
