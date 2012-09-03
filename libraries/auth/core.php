@@ -63,10 +63,29 @@ class Core
 
 		$client->save();
 
+		$user_data['token'] = serialize($user_data['token']);
+
 		Event::fire('oneauth.logged', array($client, $user_data));
 		Session::put('oneauth', $user_data);
 
 		return Core::redirect(IoC::resolve('oneauth.driver: auth.check') ? 'logged_in' : 'registration');
+	}
+
+	/**
+	 * Retrieve user information and access token from Session, this is to allow developer
+	 * to reuse the access token to retrieve or send API request to server without having 
+	 * to reinitiate OAuth\Token\Access class.
+	 *
+	 * @static
+	 * @access  public
+	 * @return  array
+	 */
+	public static function session()
+	{
+		$user_data = Session::get('oneauth');
+		$user_data['token'] = unserialize($user_data['token']);
+
+		return $user_data;
 	}
 
 	/**
