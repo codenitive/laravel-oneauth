@@ -10,7 +10,7 @@ return array(
 	'providers' => array(
 
 		'basecamp' => array(
-			'id'    => '',
+			'id'     => '',
 			'secret' => '',
 		),
 

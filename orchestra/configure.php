@@ -4,10 +4,10 @@ Event::listen('orchestra.form: extension.oneauth', function ($config, $form)
 {
 	$form->extend(function ($form)
 	{
-		$form->fieldset('Basecamp OAuth', function ($fieldset)
+		$form->fieldset('Basecamp OAuth2', function ($fieldset)
 		{
-			$fieldset->control('input:text', 'Basecamp ID', 'dropbox_id');
-			$fieldset->control('input:text', 'Basecamp Secret', 'dropbox_secret');
+			$fieldset->control('input:text', 'Basecamp ID', 'basecamp_id');
+			$fieldset->control('input:text', 'Basecamp Secret', 'basecamp_secret');
 		});
 
 		$form->fieldset('Dropbox OAuth', function ($fieldset)
