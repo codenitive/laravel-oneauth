@@ -14,9 +14,9 @@ class OneAuth_Create_Clients {
 			$table->integer('user_id')->unsigned();
 			$table->string('provider', 50);
 			$table->string('uid', 255);
-			$table->string('access_token', 255)->nullable();
-			$table->string('secret', 255)->nullable();
-			$table->string('refresh_token', 255)->nullable();
+			$table->string('access_token', 500)->nullable();
+			$table->string('secret', 500)->nullable();
+			$table->string('refresh_token', 500)->nullable();
 			$table->integer('expires')->defaults(0)->nullable();
 
 			$table->timestamps();
