@@ -4,4 +4,5 @@
 - [Events](/bundocs/oneauth/general/events)
 - [Quick Installation](/bundocs/oneauth/general/quick-installation)
 - [Overwriting Auth Driver](/bundocs/oneauth/general/overwriting-auth-driver)
+- [Changelog](/bundocs/oneauth/changes)
 
