@@ -7,6 +7,7 @@
 	- Twitter
 	- Vimeo
 * OAuth2
+	- Basecamp
 	- Facebook
 	- Foursquare
 	- Github

@@ -3,17 +3,22 @@
 return array(
 	/**
 	 * Providers
-	 * 
+	 *
 	 * Providers such as Facebook, Twitter, etc all use different Strategies such as oAuth, oAuth2, etc.
 	 * oAuth takes a key and a secret, oAuth2 takes a (client) id and a secret, optionally a scope.
 	 */
 	'providers' => array(
 
+		'basecamp' => array(
+			'id'    => '',
+			'secret' => '',
+		),
+
 		'dropbox' => array(
 			'key'    => '',
 			'secret' => '',
 		),
-		
+
 		'facebook' => array(
 			'id'     => '',
 			'secret' => '',
@@ -59,7 +64,7 @@ return array(
 			'id'     => '',
 			'secret' => '',
 		),
-		
+
 		'tumblr' => array(
 			'key'    => '',
 			'secret' => '',
@@ -79,6 +84,6 @@ return array(
 			'id'     => '',
 			'secret' => '',
 		),
-	
+
 	),
 );
