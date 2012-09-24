@@ -56,18 +56,23 @@ class Linkedin extends OAuth_Provider
 		$user = json_decode($request->execute(), true);
 
 		// Split the profile url to get the user's nickname
-		$split_url = explode('/', $user['publicProfileUrl']);
+		if (isset($user['publicProfileUrl'])) {
+			$linked_url = $user['publicProfileUrl'];
+			$nickname = end(explode('/', $user['publicProfileUrl']));
+		} else {
+			$linked_url = $nickname = false;
+		}
 
 		// Create a response from the request
 		return array(
 			'uid'         => $user['id'],
 			'name'        => $user['firstName'].' '.$user['lastName'],
 			'image'       => $user['pictureUrl'],
-			'nickname'    => end($split_url),
+			'nickname'    => $nickname,
 			'description' => $user['headline'],
 			'location'    => array_get($user, 'location.name'),
 			'urls'        => array(
-				'linkedin' => $user['publicProfileUrl'],
+				'linkedin' => $linked_url,
 			),
 		);
 	}
