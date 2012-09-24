@@ -22,7 +22,7 @@ use OneAuth\OAuth\Provider as OAuth_Provider,
 	OneAuth\OAuth\Request,
 	OneAuth\OAuth\Token;
 
-class Linkedin extends OAuth_Provider 
+class Linkedin extends OAuth_Provider
 {
 	public $name = 'linkedin';
 
@@ -40,7 +40,7 @@ class Linkedin extends OAuth_Provider
 	{
 		return 'https://api.linkedin.com/uas/oauth/accessToken';
 	}
-	
+
 	public function get_user_info(Token $token, Consumer $consumer)
 	{
 		// Create a new GET request with the required parameters
@@ -52,24 +52,23 @@ class Linkedin extends OAuth_Provider
 
 		// Sign the request using the consumer and token
 		$request->sign($this->signature, $consumer, $token);
-		
+
 		$user = json_decode($request->execute(), true);
 
 		// Split the profile url to get the user's nickname
-		if (isset($user['publicProfileUrl'])) {
-			$linked_url = $user['publicProfileUrl'];
-			$nickname = end(explode('/', $user['publicProfileUrl']));
+		if ($linked_url = array_get($user, 'publicProfileUrl')) {
+			$nickname = end(explode('/', $linked_url));
 		} else {
-			$linked_url = $nickname = false;
+			$nickname = false;
 		}
 
 		// Create a response from the request
 		return array(
-			'uid'         => $user['id'],
-			'name'        => $user['firstName'].' '.$user['lastName'],
-			'image'       => $user['pictureUrl'],
+			'uid'         => array_get($user, 'id'),
+			'name'        => array_get($user, 'firstName').' '.array_get($user, 'lastName'),
+			'image'       => array_get($user, 'pictureUrl'),
 			'nickname'    => $nickname,
-			'description' => $user['headline'],
+			'description' => array_get($user, 'headline'),
 			'location'    => array_get($user, 'location.name'),
 			'urls'        => array(
 				'linkedin' => $linked_url,
