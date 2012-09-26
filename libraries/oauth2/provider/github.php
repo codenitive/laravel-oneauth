@@ -47,11 +47,11 @@ class Github extends OAuth2_Provider
 		return array(
 			'uid'      => $user->id,
 			'nickname' => $user->login,
-			'name'     => $user->name,
-			'email'    => $user->email,
+			'name'     => isset($user->name) ? $user->name : null,
+			'email'    => isset($user->email) ? $user->email : null,
 			'urls'     => array(
 				'github' => 'http://github.com/'.$user->login,
-				'blog'   => $user->blog,
+				'blog'   => isset($user->blog) ? $user->blog : null,
 			),
 		);
 	}
