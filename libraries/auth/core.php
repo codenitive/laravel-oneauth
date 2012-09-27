@@ -82,10 +82,11 @@ class Core
 	 */
 	public static function session()
 	{
-		if (($user_data = Session::get('oneauth')))
+		if ( ! is_null($user_data = Session::get('oneauth')))
 		{
 			$user_data['token'] = unserialize($user_data['token']);
 		}
+
 		return $user_data;
 	}
 

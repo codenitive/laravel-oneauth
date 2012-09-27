@@ -53,13 +53,13 @@ class Linkedin extends OAuth_Provider
 		// Sign the request using the consumer and token
 		$request->sign($this->signature, $consumer, $token);
 
-		$user = json_decode($request->execute(), true);
+		$user     = json_decode($request->execute(), true);
+		$nickname = null;	
 
 		// Split the profile url to get the user's nickname
-		if ($linked_url = array_get($user, 'publicProfileUrl')) {
+		if ($linked_url = array_get($user, 'publicProfileUrl')) 
+		{
 			$nickname = end(explode('/', $linked_url));
-		} else {
-			$nickname = false;
 		}
 
 		// Create a response from the request
@@ -74,19 +74,5 @@ class Linkedin extends OAuth_Provider
 				'linkedin' => $linked_url,
 			),
 		);
-	}
-
-	protected function parse($string)
-	{
-		$data = is_string($string) ? simplexml_load_string($string, 'SimpleXMLElement', LIBXML_NOCDATA) : $string;
-		$arr  = array();
-
-		// Convert all objects SimpleXMLElement to array recursively
-		foreach ((array)$data as $key => $val)
-		{
-			$arr[$key] = (is_array($val) or is_object($val)) ? $this->_from_xml($val) : $val;
-		}
-
-		return $arr;
 	}
 }

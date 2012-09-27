@@ -2,8 +2,16 @@
 
 ## Contents
 
+- [OneAuth 0.1.3](#0.1.3)
 - [OneAuth 0.1.2](#0.1.2)
 - [OneAuth 0.1.1](#0.1.1)
+
+<a name-"0.1.3"></a>
+## OneAuth 0.1.3
+
+- Fixed user profile on LinkedIn with setting set to private.
+- Fixed error when unserializing an undefined value when session is null.
+- Fixed incompleted Github profile.
 
 <a name-"0.1.2"></a>
 ## OneAuth 0.1.2
