@@ -16,7 +16,7 @@ class Core
 	 * @static
 	 * @access  public
 	 * @param   string  $type
-	 * @return  void
+	 * @return  Redirect
 	 * @throws  AuthException
 	 */
 	public static function redirect($type)
@@ -87,6 +87,25 @@ class Core
 			$user_data['token'] = unserialize($user_data['token']);
 		}
 		return $user_data;
+	}
+	
+	/**
+	 * Retrieve client object of the current session (or null), this is to
+	 * allow developer to check if the client is already synced with a user.
+	 *
+	 * @static
+	 * @access  public
+	 * @return  object
+	 */
+	public static function client()
+	{
+		if (! is_null($user_data = self::session()))
+		{
+			$client = Client::where('provider', '=', $user_data['provider'])
+						->where('uid', '=', $user_data['info']['uid'])
+						->first();
+			return $client;
+		}
 	}
 
 	/**
