@@ -63,9 +63,10 @@ class Core
 
 		$client->save();
 
+		Event::fire('oneauth.logged', array($client, $user_data));
+
 		$user_data['token'] = serialize($user_data['token']);
 
-		Event::fire('oneauth.logged', array($client, $user_data));
 		Session::put('oneauth', $user_data);
 
 		return Core::redirect(IoC::resolve('oneauth.driver: auth.check') ? 'logged_in' : 'registration');
