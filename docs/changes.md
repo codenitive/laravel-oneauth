@@ -2,9 +2,15 @@
 
 ## Contents
 
+- [OneAuth 0.1.4](#0.1.4)
 - [OneAuth 0.1.3](#0.1.3)
 - [OneAuth 0.1.2](#0.1.2)
 - [OneAuth 0.1.1](#0.1.1)
+
+<a name-"0.1.4"></a>
+## OneAuth 0.1.4
+
+- Event 'oneauth.logged' should use unserialized array for `$user_data['token']`.
 
 <a name-"0.1.3"></a>
 ## OneAuth 0.1.3
