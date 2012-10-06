@@ -2,10 +2,18 @@
 
 ## Contents
 
+- [OneAuth 0.1.5](#0.1.5)
 - [OneAuth 0.1.4](#0.1.4)
 - [OneAuth 0.1.3](#0.1.3)
 - [OneAuth 0.1.2](#0.1.2)
 - [OneAuth 0.1.1](#0.1.1)
+
+
+<a name-"0.1.5"></a>
+## OneAuth 0.1.5
+
+- Bugfixes on LinkedIn request.
+
 
 <a name-"0.1.4"></a>
 ## OneAuth 0.1.4
