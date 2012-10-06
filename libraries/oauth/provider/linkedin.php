@@ -59,7 +59,8 @@ class Linkedin extends OAuth_Provider
 		// Split the profile url to get the user's nickname
 		if ($linked_url = array_get($user, 'publicProfileUrl')) 
 		{
-			$nickname = end(explode('/', $linked_url));
+			$profile_nickname = explode('/', $linked_url);
+			$nickname = end($profile_nickname);
 		}
 
 		// Create a response from the request
