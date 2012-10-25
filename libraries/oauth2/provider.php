@@ -15,6 +15,27 @@ use \Redirect, \Session, \URL;
 abstract class Provider
 {
 	/**
+	 * The third-party driver registrar.
+	 *
+	 * @var array
+	 */
+	public static $registrar = array();
+
+	/**
+	 * Register a third-party authentication driver.
+	 *
+	 * @param  string   $driver
+	 * @param  Closure  $resolver
+	 * @return void
+	 */
+	public static function extend($driver, Closure $resolver)
+	{
+		static::$registrar[$driver] = $resolver;
+		OnaAuth\Auth\Strategy::add('OAuth2', $driver);
+	}
+
+
+	/**
 	 * Create a new provider.
 	 *
 	 *     // Load the Twitter provider
@@ -24,9 +45,16 @@ abstract class Provider
 	 * @param   array    provider options
 	 * @return  OAuth_Provider
 	 */
-	public static function make($name, array $options = null)
-	{	
-		switch ($name)
+	public static function make($driver, array $options = null)
+	{
+		if (isset(static::$registrar[$driver]))
+		{
+			$resolver = static::$registrar[$driver];
+
+			return $resolver();
+		}
+
+		switch ($driver)
 		{
 			case 'facebook' :
 				return new Provider\Facebook($options);

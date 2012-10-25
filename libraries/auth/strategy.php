@@ -47,6 +47,14 @@ abstract class Strategy
 		'windowlive' => 'OAuth2',
 	);
 
+	public static function add($type, $name)
+	{
+		if (in_array($type, array('OAuth', 'OAuth2') and ! empty($name))
+		{
+			static::$providers[$name] = $type;
+		}
+	}
+
 	/**
 	 * Generic construct method
 	 *
