@@ -40,6 +40,71 @@ class Flickr extends OAuth_Provider
 	{
 		return 'http://www.flickr.com/services/oauth/access_token';
 	}
+
+	/**
+	 * Get the authorization URL for the request token.
+	 *
+	 *     Response::redirect($provider->authorize_url($token));
+	 *
+	 * @param   Token_Request  token
+	 * @param   array                additional request parameters
+	 * @return  string
+	 */
+	public function authorize_url(Token\Request $token, array $params = null)
+	{
+		// Create a new GET request for a request token with the required parameters
+		$request = Request::make('authorize', 'GET', $this->url_authorize(), array(
+			'oauth_token' => $token->access_token,
+			'perms'       => 'read',
+		));
+
+		if ($params)
+		{
+			// Load user parameters
+			$request->params($params);
+		}
+
+		return $request->as_url();
+	}
+
+	/**
+	 * Exchange the request token for an access token.
+	 *
+	 *     $token = $provider->access_token($consumer, $token);
+	 *
+	 * @param   Consumer       consumer
+	 * @param   Token_Request  token
+	 * @param   array                additional request parameters
+	 * @return  Token_Access
+	 */
+	public function access_token(Token\Request $token, Consumer $consumer, array $params = null)
+	{
+		// Create a new GET request for a request token with the required parameters
+		$request = Request::make('access', 'GET', $this->url_access_token(), array(
+			'oauth_consumer_key' => $consumer->key,
+			'oauth_token'        => $token->access_token,
+			'oauth_verifier'     => $token->verifier,
+		));
+
+		if ($params)
+		{
+			// Load user parameters
+			$request->params($params);
+		}
+
+		// Sign the request using only the consumer, no token is available yet
+		$request->sign($this->signature, $consumer, $token);
+
+		// Create a response from the request
+		$response = $request->execute();
+		
+		// Store this token somewhere useful
+		return Token::make('access', array(
+			'access_token' => $response->param('oauth_token'),
+			'secret'       => $response->param('oauth_token_secret'),
+			'uid'          => $response->param($this->uid_key) ?: Input::get($this->uid_key),
+		));
+	}
 	
 	public function get_user_info(Token $token, Consumer $consumer)
 	{
