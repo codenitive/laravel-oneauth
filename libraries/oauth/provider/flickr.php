@@ -82,7 +82,7 @@ class Flickr extends OAuth_Provider
 		// Create a new GET request for a request token with the required parameters
 		$request = Request::make('access', 'GET', $this->url_access_token(), array(
 			'oauth_consumer_key' => $consumer->key,
-			'oauth_token'        => $token->access_token,
+			'oauth_access_token' => $token->access_token,
 			'oauth_verifier'     => $token->verifier,
 		));
 
