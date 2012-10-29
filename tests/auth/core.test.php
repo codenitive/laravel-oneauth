@@ -10,6 +10,7 @@ class TestCore extends PHPUnit_Framework_TestCase
 		Bundle::start('oneauth');
 
 		Config::set('application.url', 'http://localhost');
+		Config::set('application.index', '');
 		Config::set('oneauth::urls', array(
 			'registration' => 'auth/register',
 			'login'        => 'auth/login',
