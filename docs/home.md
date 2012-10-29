@@ -1,7 +1,9 @@
 OneAuth Bundle
 ==============
 
-OAuth, OAuth2 and OpenID Auth bundle for Laravel
+OAuth and OAuth2 Auth bundle for Laravel
+
+*OpenID support is currently under plan.*
 
 ## Installation
 

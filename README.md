@@ -5,7 +5,7 @@ OAuth and OAuth2 Auth bundle for Laravel
 
 [![Build Status](https://secure.travis-ci.org/codenitive/laravel-oneauth.png)](http://travis-ci.org/codenitive/laravel-oneauth)
 
-*OpenID support is under plan.*
+*OpenID support is currently under plan.*
 
 ## Installation
 
