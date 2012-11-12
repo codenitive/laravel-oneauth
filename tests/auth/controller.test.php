@@ -1,6 +1,6 @@
 <?php
 
-class ControllerTest extends PHPUnit_Framework_TestCase 
+class AuthControllerTest extends PHPUnit_Framework_TestCase 
 {
 	/**
 	 * Setup the test environment.

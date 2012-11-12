@@ -1,6 +1,6 @@
 <?php
 
-class StrategyTest extends PHPUnit_Framework_TestCase
+class AuthStrategyTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * Setup the test environment.

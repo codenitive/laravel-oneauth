@@ -1,6 +1,6 @@
 <?php
 
-class ConsumerTest extends PHPUnit_Framework_TestCase {
+class OAuthConsumerTest extends PHPUnit_Framework_TestCase {
 	
 	/**
 	 * Setup the test environment.

@@ -1,6 +1,6 @@
 <?php
 
-class TestClient extends PHPUnit_Framework_TestCase 
+class AuthClientTest extends PHPUnit_Framework_TestCase 
 {
 	/**
 	 * Setup the test
