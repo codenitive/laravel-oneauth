@@ -1,9 +1,9 @@
 <?php
 
-class TestCore extends PHPUnit_Framework_TestCase
+class CoreTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * Setup the test
+	 * Setup the test environment.
 	 */
 	public function setUp()
 	{
@@ -19,6 +19,15 @@ class TestCore extends PHPUnit_Framework_TestCase
 			'registered'   => 'auth/home',
 			'logged_in'    => 'auth/account',
 		));
+	}
+
+	/**
+	 * Teardown the test environment.
+	 */
+	public function tearDown()
+	{
+		Config::set('application.url', '');
+		Config::set('application.index', 'index.php');
 	}
 
 	/**

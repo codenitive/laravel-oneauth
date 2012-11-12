@@ -1,9 +1,9 @@
 <?php
 
-class TestStrategy extends PHPUnit_Framework_TestCase
+class StrategyTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * Setup the test
+	 * Setup the test environment.
 	 */
 	public function setUp()
 	{
@@ -12,6 +12,8 @@ class TestStrategy extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Test OneAuth\Auth\Strategy::__construct() on OAuth Strategy
+	 *
+	 * @test
 	 */
 	public function testInstanceOfOAuthStrategy()
 	{
@@ -22,13 +24,15 @@ class TestStrategy extends PHPUnit_Framework_TestCase
 		$this->assertEquals('twitter', $oauth->provider);
 	}
 
-
 	/**
 	 * Test OneAuth\Auth\Strategy::__construct() on OAuth2 Strategy
+	 * 
+	 * @test
 	 */
 	public function testInstanceOfOAuth2Strategy()
 	{
 		$oauth2 = new OneAuth\Auth\Strategy\OAuth2('facebook');
+		
 		$this->assertInstanceOf('OneAuth\Auth\Strategy', $oauth2);
 		$this->assertInstanceOf('OneAuth\Auth\Strategy\OAuth2', $oauth2);
 		$this->assertEquals('oauth2', $oauth2->name);
