@@ -1,5 +1,7 @@
 <?php
 
+Bundle::start('oneauth');
+
 class OAuthRequestTest extends PHPUnit_Framework_TestCase {
 	
 	private $request = null;
@@ -9,8 +11,7 @@ class OAuthRequestTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function setUp()
 	{
-		Bundle::start('oneauth');
-		$this->request = OneAuth\OAuth\Request::make('access', 'POST', 'http://google.com', array('foo' => 'foobar'));
+		$this->request = new RequestStub('POST', 'http://google.com', array('foo' => 'foobar'));
 	}
 
 	/**
@@ -42,7 +43,7 @@ class OAuthRequestTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testPropertiesIsProperlySetup()
 	{
-		$this->assertEquals('access', $this->request->name);
+		$this->assertEquals('stub', $this->request->name);
 		$this->assertEquals('POST', $this->request->method);
 		$this->assertEquals('foobar', $this->request->params['foo']);
 	}
@@ -69,4 +70,10 @@ class OAuthRequestTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(40, strlen($nonce));
 		$this->assertRegExp('/([a-zA-Z0-9]{40})/', $nonce);
 	}
+}
+
+class RequestStub extends OneAuth\OAuth\Request {
+
+	protected $name = 'stub';
+	
 }
