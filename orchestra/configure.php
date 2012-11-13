@@ -1,5 +1,11 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Edit Extension `oneauth`
+|--------------------------------------------------------------------------
+*/
+
 Event::listen('orchestra.form: extension.oneauth', function ($config, $form)
 {
 	$form->extend(function ($form)
@@ -25,9 +31,9 @@ Event::listen('orchestra.form: extension.oneauth', function ($config, $form)
 				$control->label = 'Facebook Scope';
 				$control->value = function ($row)
 				{
-					$value = ! empty($row->facebook_scope) ? $row->facebook_scope : Config::get('oneauth::api.providers.facebook.scope');
+					if ( ! empty($row->facebook_scope)) return $row->facebook_scope;
 
-					return $value;
+					return Config::get('oneauth::api.providers.facebook.scope');
 				};
 			});
 		});

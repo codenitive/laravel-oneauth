@@ -51,7 +51,7 @@ class OAuthConsumerTest extends PHPUnit_Framework_TestCase {
 	public function testChangeCallbackValue()
 	{
 		$options = array(
-			'key' => 'foo',
+			'key'    => 'foo',
 			'secret' => 'foobar',
 		);
 

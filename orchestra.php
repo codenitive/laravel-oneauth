@@ -6,7 +6,8 @@
 |--------------------------------------------------------------------------
 |
 | Overwrite default configuration
- */
+|
+*/
 
 Config::set('oneauth::urls', array(
 	'registration' => handles('orchestra::register'),
@@ -72,7 +73,8 @@ Orchestra\Extension\Config::map('oneauth', array(
 |--------------------------------------------------------------------------
 |
 | Map controller routing for OneAuth
- */
+|
+*/
 
 Route::controller(array('oneauth::connect'));
 
@@ -82,12 +84,12 @@ Route::controller(array('oneauth::connect'));
 |--------------------------------------------------------------------------
 |
 | Add on logged-in integration between OneAuth and Orchestra
- */
+|
+*/
 
 Event::listen('orchestra.logged.in', function()
 {
-	$user = Auth::user();
-	Event::fire('oneauth.sync', array($user->id));
+	Event::fire('oneauth.sync', array(Auth::user()->id));
 });
 
 include_once Bundle::path('oneauth').'orchestra'.DS.'configure'.EXT;
