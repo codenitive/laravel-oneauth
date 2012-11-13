@@ -6,7 +6,9 @@
 |--------------------------------------------------------------------------
 |
 | Map OneAuth Library using PSR-0 standard namespace. 
- */
+|
+*/
+
 Autoloader::namespaces(array(
 	'OneAuth\\Auth'   => Bundle::path('oneauth').'libraries'.DS.'auth',
 	'OneAuth\\OAuth'  => Bundle::path('oneauth').'libraries'.DS.'oauth',
@@ -21,8 +23,10 @@ Autoloader::namespaces(array(
 | Lets listen to when OneAuth logged a user using any of the supported 
 | providers. 
 |
-| OneAuth also listen to when user actually logged in to Laravel
- */ 
+| OneAuth also listen to when user actually logged in to Laravel.
+|
+*/
+
 Event::listen('oneauth.logged', function ($client, $user_data)
 {
 	// if user already logged in, don't do anything
@@ -46,8 +50,10 @@ Event::listen('oneauth.sync', function ($user_id)
 |--------------------------------------------------------------------------
 |
 | Register Auth adapter as IoC, allow it to be replaced by any Authentication
-| bundle that doesn't use Laravel\Auth\Drivers
- */
+| bundle that doesn't use Laravel\Auth\Drivers.
+|
+*/
+
 if ( ! IoC::registered('oneauth.driver: auth.check'))
 {
 	// Check whether current user is logged-in to the system or a guest

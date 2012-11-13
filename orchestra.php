@@ -5,7 +5,7 @@
 | Integration with Orchestra
 |--------------------------------------------------------------------------
 |
-| Overwrite default configuration
+| Overwrite default configuration.
 |
 */
 
@@ -72,7 +72,7 @@ Orchestra\Extension\Config::map('oneauth', array(
 | Integration with Orchestra
 |--------------------------------------------------------------------------
 |
-| Map controller routing for OneAuth
+| Map controller routing for OneAuth.
 |
 */
 
@@ -83,7 +83,7 @@ Route::controller(array('oneauth::connect'));
 | Integration with Orchestra
 |--------------------------------------------------------------------------
 |
-| Add on logged-in integration between OneAuth and Orchestra
+| Add on logged-in integration between OneAuth and Orchestra.
 |
 */
 
