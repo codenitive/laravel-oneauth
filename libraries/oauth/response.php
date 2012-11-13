@@ -12,7 +12,15 @@
 
 class Response
 {
-	public static function make($body)
+	/**
+	 * Create an instance of Response
+	 *
+	 * @static
+	 * @access public
+	 * @param  mixed    $body
+	 * @return Response
+	 */
+	public static function make($body = NULL)
 	{
 		return new static($body);
 	}
@@ -22,6 +30,13 @@ class Response
 	 */
 	protected $params = array();
 
+	/**
+	 * Construct a new instance
+	 * 
+	 * @access public
+	 * @param  mixed    $body
+	 * @return void
+	 */
 	public function __construct($body = NULL)
 	{
 		if ($body)
