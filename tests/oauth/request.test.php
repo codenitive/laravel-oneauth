@@ -67,5 +67,6 @@ class OAuthRequestTest extends PHPUnit_Framework_TestCase {
 		$nonce = $this->request->nonce();
 
 		$this->assertEquals(40, strlen($nonce));
+		$this->assertRegExp('/([a-zA-Z0-9]{40})/', $nonce);
 	}
 }
