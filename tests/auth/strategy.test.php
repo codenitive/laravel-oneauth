@@ -38,4 +38,15 @@ class AuthStrategyTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('oauth2', $oauth2->name);
 		$this->assertEquals('facebook', $oauth2->provider);
 	}
+
+	/**
+	 * Test OneAuth\Auth\Strategy::make() without a proper provider throw an exception
+	 *
+	 * @test
+	 * @expectedException OneAuth\Auth\Strategy\Exception
+	 */
+	public function testMakeInvalidProviderThrowException()
+	{
+		OneAuth\Auth\Strategy::make('foo');
+	}
 }

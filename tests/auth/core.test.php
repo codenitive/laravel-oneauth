@@ -35,7 +35,7 @@ class AuthCoreTest extends PHPUnit_Framework_TestCase
 	 *
 	 * @test
 	 */
-	public function testRedirect()
+	public function testRedirection()
 	{
 		$output = OneAuth\Auth\Core::redirect('registration');
 
