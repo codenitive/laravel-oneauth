@@ -13,6 +13,9 @@
 ## OneAuth 0.1.5
 
 - Bugfixes on LinkedIn request.
+- Add custom driver for OAuth and OAuth2.
+- Update Flickr authentication process.
+- Add Unit Testing for OneAuth.
 
 
 <a name-"0.1.4"></a>
