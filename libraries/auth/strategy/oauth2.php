@@ -13,33 +13,40 @@ use OneAuth\Auth\Strategy as Auth_Strategy,
 
 class Oauth2 extends Auth_Strategy
 {
-	public $name = 'oauth2';
-	public $provider;
-	
+	public $type = 'oauth2';
+
+	/**
+	 * Provider object
+	 *
+	 * @access  public
+	 * @var     object
+	 */
+	public $provider = null;
+
 	public function authenticate()
 	{
 		// Load the provider
-		$provider = Provider::make($this->provider, $this->config);
-		
+		$provider = Provider::make($this->name, $this->config);
+
 		// Grab a callback from the config
 		if ($provider->callback === null)
 		{
 			$callback           = \URL::to(\Config::get('oneauth::urls.callback', 'connect/callback'));
-			$callback           = rtrim($callback, '/').'/'.$this->provider;
+			$callback           = rtrim($callback, '/').'/'.$this->name;
 			$provider->callback = $callback;
 		}
-		
+
 		return $provider->authorize(array(
 			'redirect_uri' => $provider->callback
 		));
 	}
-	
+
 	public function callback()
 	{
 		try {
 			// Load the provider
-			$this->provider = Provider::make($this->provider, $this->config);
-			
+			$this->provider = Provider::make($this->name, $this->config);
+
 			return $this->provider->access(\Input::get('code'));
 		}
 		catch (OAuth2_Exception $e)
