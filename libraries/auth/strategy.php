@@ -10,16 +10,23 @@ use \Config;
 
 abstract class Strategy
 {
-	public $provider = null;
-	public $config   = array();
-
 	/**
-	 * Strategy name
+	 * Provider name
 	 *
 	 * @access  public
 	 * @var     string
 	 */
-	public $name     = null;
+	public $name = null;
+
+	/**
+	 * Strategy type (OAuth or OAuth2)
+	 *
+	 * @access  public
+	 * @var     string
+	 */
+	public $type = null;
+
+	public $config = array();
 
 	/**
 	 * List of available provider
@@ -28,7 +35,7 @@ abstract class Strategy
 	 * @access  protected
 	 * @var     array
 	 */
-	protected static $providers = array(
+	protected static $provider_list = array(
 		'basecamp'   => 'OAuth2',
 		'dropbox'    => 'OAuth',
 		'facebook'   => 'OAuth2',
@@ -51,7 +58,7 @@ abstract class Strategy
 	{
 		if (in_array($type, array('OAuth', 'OAuth2')) and ! empty($name))
 		{
-			static::$providers[$name] = $type;
+			static::$provider_list[$name] = $type;
 		}
 	}
 
@@ -61,15 +68,15 @@ abstract class Strategy
 	 * @access  public
 	 * @return  void
 	 */
-	public function __construct($provider)
+	public function __construct($name)
 	{
-		$this->provider = $provider;
+		$this->name = $name;
 
-		$this->config   = Config::get("oneauth::api.providers.{$provider}", null);
+		$this->config   = Config::get("oneauth::api.providers.{$name}", null);
 
 		if (is_null($this->config))
 		{
-			throw new Strategy\Exception(sprintf('Provider "%s" has no config.', $provider));
+			throw new Strategy\Exception(sprintf('Provider "%s" has no config.', $name));
 		}
 	}
 
@@ -81,22 +88,22 @@ abstract class Strategy
 	 * @return  Auth_Strategy
 	 * @throws  Strategy\Exception
 	 */
-	public static function make($provider = null)
+	public static function make($name = null)
 	{
-		$strategy = Config::get("oneauth::providers.{$provider}.strategy") ?: array_get(static::$providers, $provider);
+		$strategy = Config::get("oneauth::providers.{$name}.strategy") ?: array_get(static::$provider_list, $name);
 
 		if (is_null($strategy))
 		{
-			throw new Strategy\Exception(sprintf('Provider "%s" has no strategy.', $provider));
+			throw new Strategy\Exception(sprintf('Provider "%s" has no strategy.', $name));
 		}
 
 		switch ($strategy)
 		{
 			case 'OAuth' :
-				return new Strategy\Oauth($provider);
+				return new Strategy\Oauth($name);
 				break;
 			case 'OAuth2' :
-				return new Strategy\Oauth2($provider);
+				return new Strategy\Oauth2($name);
 				break;
 		}
 	}
@@ -115,7 +122,7 @@ abstract class Strategy
 	{
 		$token     = $strategy->callback();
 		$user_info = static::get_user_info($strategy, $token);
-
+dd($user_info);
 		$user_data = array(
 			'token'    => $token,
 			'info'     => $user_info,
@@ -137,7 +144,7 @@ abstract class Strategy
 	 */
 	protected static function get_user_info($strategy, $token)
 	{
-		switch ($strategy->name)
+		switch ($strategy->type)
 		{
 			case 'oauth':
 				return $strategy->provider->get_user_info($token, $strategy->consumer);

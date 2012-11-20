@@ -13,23 +13,30 @@ use OneAuth\Auth\Strategy as Auth_Strategy,
 
 class Oauth extends Auth_Strategy
 {
-	public $name = 'oauth';
-	public $provider;
-	
+	public $type = 'oauth';
+
+	/**
+	 * Provider object
+	 *
+	 * @access  public
+	 * @var     object
+	 */
+	public $provider = null;
+
 	public function authenticate()
 	{
 		// Create an consumer from the config
 		$consumer = Consumer::make($this->config);
-		
+
 		// Load the provider
-		$provider = Provider::make($this->provider);
-		
+		$provider = Provider::make($this->name);
+
 		// Create the URL to return the user to
 		$callback = array_get($this->config, 'callback') ?: \URL::to(\Config::get('oneauth::urls.callback', 'connect/callback'));
-		$callback = rtrim($callback, '/').'/'.$this->provider;
-		
+		$callback = rtrim($callback, '/').'/'.$this->name;
+
 		// Add the callback URL to the consumer
-		$consumer->callback($callback); 
+		$consumer->callback($callback);
 
 		// Get a request token for the consumer
 		$token = $provider->request_token($consumer);
@@ -42,15 +49,15 @@ class Oauth extends Auth_Strategy
 			'oauth_callback' => $callback,
 		)));
 	}
-	
+
 	public function callback()
 	{
 		// Create an consumer from the config
 		$this->consumer = Consumer::make($this->config);
 
 		// Load the provider
-		$this->provider = Provider::make($this->provider);
-		
+		$this->provider = Provider::make($this->name);
+
 		if ($token = \Cookie::get('oauth_token'))
 		{
 			// Get the token from storage
@@ -61,9 +68,9 @@ class Oauth extends Auth_Strategy
 		{
 			throw new Exception('Invalid token');
 		}
-			
+
 		if ($this->token and $this->token->access_token !== \Input::get('oauth_token'))
-		{   
+		{
 			// Delete the token, it is not valid
 			\Cookie::forget('oauth_token');
 
