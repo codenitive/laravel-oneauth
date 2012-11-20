@@ -3,7 +3,7 @@ OneAuth Bundle
 
 OAuth and OAuth2 Auth bundle for Laravel
 
-[![Build Status](https://secure.travis-ci.org/codenitive/laravel-oneauth.png)](http://travis-ci.org/codenitive/laravel-oneauth)
+[![Build Status](https://secure.travis-ci.org/codenitive/laravel-oneauth.png?branch=master)](http://travis-ci.org/codenitive/laravel-oneauth)
 
 *OpenID support is currently under plan.*
 
@@ -12,7 +12,7 @@ OAuth and OAuth2 Auth bundle for Laravel
 ### Installation with Laravel Artisan
 
 	php artisan bundle:install oneauth
-	
+
 ### Bundle Registration
 
 	'oneauth' => array('auto' => true),
@@ -23,7 +23,7 @@ OAuth and OAuth2 Auth bundle for Laravel
 
 ## OneAuth Documentation
 
-OneAuth Bundle come with an offline documentation, to view this please download and enable `bundocs` bundle, 
+OneAuth Bundle come with an offline documentation, to view this please download and enable `bundocs` bundle,
 see [Bundocs Bundle](http://bundles.laravel.com/bundle/bundocs) for more detail.
 
 ## Contributors
