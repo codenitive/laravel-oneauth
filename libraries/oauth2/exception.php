@@ -18,7 +18,8 @@
 class Exception extends \Exception
 {
 	/**
-	 * The result from the API server that represents the exception information.
+	 * The result from the API server that represents the exception
+	 * information.
 	 */
 	protected $result;
 
@@ -31,7 +32,7 @@ class Exception extends \Exception
 	public function __construct($result)
 	{
 		$this->result = $result;
-		
+
 		$code         = isset($result['code']) ? $result['code'] : 0;
 
 		// OAuth 2.0 Draft 10 style
@@ -52,7 +53,7 @@ class Exception extends \Exception
 	public function __toString()
 	{
 		$str = $this->getType() . ': ';
-		
+
 		if ($this->code != 0) $str .= $this->code . ': ';
 
 		return $str . $this->message;

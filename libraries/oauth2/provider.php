@@ -94,15 +94,17 @@ abstract class Provider
 	public $uid_key = 'uid';
 
 	/**
-	 * @var  string  additional request parameters to be used for remote requests
+	 * @var  string  additional request parameters to be used for remote
+	 *               requests
 	 */
 	public $callback = null;
 
 	/**
-	 * @var  array  additional request parameters to be used for remote requests
+	 * @var  array  additional request parameters to be used for remote
+	 *              requests
 	 */
 	protected $params = array();
-	
+
 	/**
 	 * @var  string  the method to use when requesting tokens
 	 */
@@ -114,7 +116,8 @@ abstract class Provider
 	protected $scope;
 
 	/**
-	 * @var  string  scope separator, most use "," but some like Google are spaces
+	 * @var  string  scope separator, most use "," but some like Google are
+	 *               spaces
 	 */
 	protected $scope_seperator = ',';
 
@@ -127,16 +130,16 @@ abstract class Provider
 	 * @return  void
 	 */
 	public function __construct(array $options = array())
-	{	
+	{
 		if ( ! $this->client_id = array_get($options, 'id'))
 		{
 			throw new Exception(array('message' => 'Required option not provided: id'));
 		}
-		
+
 		$this->callback      = array_get($options, 'callback');
 		$this->client_secret = array_get($options, 'secret');
 		$this->scope         = array_get($options, 'scope', $this->scope);
-		
+
 		$this->redirect_uri  = URL::current();
 	}
 
@@ -173,13 +176,14 @@ abstract class Provider
 	abstract public function url_access_token();
 
 	/*
-	* Get an authorization code from Facebook.  Redirects to Facebook, which this redirects back to the app using the redirect address you've set.
-	*/	
+	* Get an authorization code from Facebook.  Redirects to Facebook, which
+	* this redirects back to the app using the redirect address you've set.
+	*/
 	public function authorize($options = array())
 	{
 		$state = md5(uniqid(rand(), TRUE));
 		Session::put('state', $state);
-		
+
 		$url = $this->url_authorize().'?'.http_build_query(array(
 			'client_id' 		=> $this->client_id,
 			'redirect_uri' 		=> array_get($options, 'redirect_uri', $this->redirect_uri),
@@ -187,7 +191,7 @@ abstract class Provider
 			'scope'     		=> is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
 			'response_type' 	=> 'code',
 		));
-		
+
 		return Redirect::to($url);
 	}
 
@@ -196,7 +200,7 @@ abstract class Provider
 	*
 	* @param	string	The access code
 	* @return	object	Success or failure along with the response details
-	*/	
+	*/
 	public function access($code, $options = array())
 	{
 		$params = array(
@@ -211,13 +215,13 @@ abstract class Provider
 				$params['code']         = $code;
 				$params['redirect_uri'] = array_get($options, 'redirect_uri', $this->redirect_uri);
 			break;
-			
+
 			case 'refresh_token':
 				$params['refresh_token'] = $code;
 			break;
 		}
 
-		$response = null;	
+		$response = null;
 		$url      = $this->url_access_token();
 
 		$request  = Request::make('access', $this->method, $url, $params);

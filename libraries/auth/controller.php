@@ -7,7 +7,7 @@
  * @author      Phil Sturgeon <https://github.com/philsturgeon>
  */
 
-class Controller extends \Controller 
+class Controller extends \Controller
 {
 	/**
 	 * Start a session request
@@ -19,13 +19,14 @@ class Controller extends \Controller
 	 */
 	public function action_session($provider = null)
 	{
-		// if provider data is somehow empty, it might not came from a provider.
+		// if provider data is somehow empty, it might not came from a
+		// provider.
 		if (empty($provider))
 		{
 			return \Response::error('404');
 		}
 
-		try 
+		try
 		{
 			return Strategy::make($provider)->authenticate();
 		}
@@ -36,7 +37,8 @@ class Controller extends \Controller
 	}
 
 	/**
-	 * Get authorization code from callback and fetch user access_token and other information
+	 * Get authorization code from callback and fetch user access_token and
+	 * other information
 	 *
 	 * @access  public
 	 * @param   string      $provider
@@ -45,17 +47,18 @@ class Controller extends \Controller
 	 */
 	public function action_callback($provider = null)
 	{
-		// if provider data is somehow empty, it might not came from a provider.
+		// if provider data is somehow empty, it might not came from a
+		// provider.
 		if (empty($provider))
 		{
 			return \Response::error('404');
 		}
-		
-		try 
+
+		try
 		{
 			$strategy = Strategy::make($provider);
 			return Strategy::login_or_register($strategy);
-		} 
+		}
 		catch (Strategy\Exception $e)
 		{
 			return $this->action_error($provider, $e->getMessage());

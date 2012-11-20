@@ -14,7 +14,7 @@ use OneAuth\OAuth2\Provider as OAuth2_Provider,
 	OneAuth\OAuth2\Request,
 	OneAuth\OAuth2\Token\Access as Token_Access;
 
-class Instagram extends OAuth2_Provider 
+class Instagram extends OAuth2_Provider
 {
 	/**
 	 * @var  string  provider name
@@ -22,7 +22,8 @@ class Instagram extends OAuth2_Provider
 	public $name = 'instagram';
 
 	/**
-	 * @var  string  scope separator, most use "," but some like Google are spaces
+	 * @var  string  scope separator, most use "," but some like Google are
+	 *               spaces
 	 */
 	public $scope_seperator = '+';
 
@@ -45,14 +46,16 @@ class Instagram extends OAuth2_Provider
 	{
 		// Now make sure we have the default scope to get user data
 		$options['scope'] = array_merge(
-			
-			// We need this default feed to get the authenticated users basic information
+
+			// We need this default feed to get the authenticated users
+			// basic information
 			array('basic'),
-			
-			// And take either a string and array it, or empty array to merge into
+
+			// And take either a string and array it, or empty array to
+			// merge into
 			(array) array_get($options, 'scope', array())
 		);
-		
+
 		parent::__construct($options);
 	}
 

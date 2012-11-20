@@ -92,12 +92,14 @@ abstract class Provider
 	public $uid_key = 'uid';
 
 	/**
-	 * @var  array  additional request parameters to be used for remote requests
+	 * @var  array  additional request parameters to be used for remote
+	 *              requests
 	 */
 	protected $params = array();
-	
+
 	/**
-	 * @var  string  scope separator, most use "," but some like Google are spaces
+	 * @var  string  scope separator, most use "," but some like Google are
+	 *               spaces
 	 */
 	public $scope_seperator = ',';
 
@@ -168,7 +170,7 @@ abstract class Provider
 	 * @return  string
 	 */
 	abstract public function url_access_token();
-	
+
 	/**
 	 * Returns basic information about the user.
 	 *
@@ -190,7 +192,8 @@ abstract class Provider
 	 */
 	public function request_token(Consumer $consumer, array $params = null)
 	{
-		// Create a new GET request for a request token with the required parameters
+		// Create a new GET request for a request token with the required
+		// parameters
 		$request = Request::make('token', 'GET', $this->url_request_token(), array(
 			'oauth_consumer_key' => $consumer->key,
 			'oauth_callback'     => $consumer->callback,
@@ -203,7 +206,8 @@ abstract class Provider
 			$request->params($params);
 		}
 
-		// Sign the request using only the consumer, no token is available yet
+		// Sign the request using only the consumer, no token is available
+		// yet
 		$request->sign($this->signature, $consumer);
 
 		// Create a response from the request
@@ -227,7 +231,8 @@ abstract class Provider
 	 */
 	public function authorize_url(Token\Request $token, array $params = null)
 	{
-		// Create a new GET request for a request token with the required parameters
+		// Create a new GET request for a request token with the required
+		// parameters
 		$request = Request::make('authorize', 'GET', $this->url_authorize(), array(
 			'oauth_token' => $token->access_token,
 		));
@@ -253,7 +258,8 @@ abstract class Provider
 	 */
 	public function access_token(Token\Request $token, Consumer $consumer, array $params = null)
 	{
-		// Create a new GET request for a request token with the required parameters
+		// Create a new GET request for a request token with the required
+		// parameters
 		$request = Request::make('access', 'GET', $this->url_access_token(), array(
 			'oauth_consumer_key' => $consumer->key,
 			'oauth_token'        => $token->access_token,
@@ -266,12 +272,13 @@ abstract class Provider
 			$request->params($params);
 		}
 
-		// Sign the request using only the consumer, no token is available yet
+		// Sign the request using only the consumer, no token is available
+		// yet
 		$request->sign($this->signature, $consumer, $token);
 
 		// Create a response from the request
 		$response = $request->execute();
-		
+
 		// Store this token somewhere useful
 		return Token::make('access', array(
 			'access_token' => $response->param('oauth_token'),

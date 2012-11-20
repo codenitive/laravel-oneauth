@@ -45,10 +45,9 @@ class Basecamp extends OAuth2_Provider
 		$user = json_decode($request->execute());
 
 		/**
-		* Create a response from the request
-		* Basecamp Authorization response has extra requirements and doesn't
-		* give some of the meta information below.
-		* Image is available via the me.json call.
+		* Create a response from the request Basecamp Authorization response
+		* has extra requirements and doesn't give some of the meta
+		* information below. Image is available via the me.json call.
 		*/
 		return array(
 			'uid'      => $user->identity->id,

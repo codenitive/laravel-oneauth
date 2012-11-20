@@ -25,7 +25,7 @@ class Core
 		{
 			throw new Exception(__METHOD__.": Unable to redirect using {$type} type.");
 		}
-		
+
 		return Redirect::to($path);
 	}
 
@@ -73,9 +73,10 @@ class Core
 	}
 
 	/**
-	 * Retrieve user information and access token from Session, this is to allow developer
-	 * to reuse the access token to retrieve or send API request to server without having 
-	 * to reinitiate OAuth\Token\Access class.
+	 * Retrieve user information and access token from Session, this is to
+	 * allow developer to reuse the access token to retrieve or send API
+	 * request to server without having to reinitiate OAuth\Token\Access
+	 * class.
 	 *
 	 * @static
 	 * @access  public
@@ -92,7 +93,7 @@ class Core
 	}
 
 	/**
-	 * Sync oneauth_clients with user
+	 * Sync `oneauth_clients` with `users` table
 	 *
 	 * @static
 	 * @access  public

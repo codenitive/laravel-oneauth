@@ -102,7 +102,8 @@ abstract class Strategy
 	}
 
 	/**
-	 * Determine whether authenticated user should be continue to login or register new user
+	 * Determine whether authenticated user should be continue to login or
+	 * register new user
 	 *
 	 * @static
 	 * @access  public

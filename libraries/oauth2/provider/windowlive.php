@@ -22,39 +22,41 @@ class Windowslive extends OAuth2_Provider
 	public $name = 'windowslive';
 
 	protected $method = 'POST';
-	
+
 	public function __construct(array $options = array())
 	{
 		// Now make sure we have the default scope to get user data
 		$options['scope'] = array_merge(
-			
-			// We need this default feed to get the authenticated users basic information
+
+			// We need this default feed to get the authenticated users
+			// basic information
 			array('wl.basic', 'wl.emails'),
-			
-			// And take either a string and array it, or empty array to merge into
+
+			// And take either a string and array it, or empty array to
+			// merge into
 			(array) array_get($options, 'scope', array())
 		);
-		
+
 		parent::__construct($options);
 	}
-	
+
 	// authorise url
 	public function url_authorize()
 	{
 		// return the authorise URL
 		return 'https://oauth.live.com/authorize';
 	}
-	
+
 	// access token url
 	public function url_access_token()
 	{
 		// return the access token URL
 		return 'https://oauth.live.com/token';
 	}
-	
+
 	// get basic user information
 	/********************************
-	** this can be extended through the 
+	** this can be extended through the
 	** use of scopes, check out the document at
 	** http://msdn.microsoft.com/en-gb/library/hh243648.aspx#user
 	*********************************/
@@ -64,7 +66,7 @@ class Windowslive extends OAuth2_Provider
 		$request = Request::make('resource', 'GET', 'https://apis.live.net/v5.0/me', array(
 			'access_token' => $token->access_token,
 		));
-		
+
 		// perform network request
 		$user = json_decode($request->execute());
 

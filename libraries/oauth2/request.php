@@ -69,16 +69,16 @@ class Request
 		// Set the request method
 		if ($method) $this->method = strtoupper($method);
 
-		// Separate the URL and query string, which will be used as additional
-		// default parameters
+		// Separate the URL and query string, which will be used as
+		// additional default parameters
 		list ($url, $default) = Core::parse_url($url);
 
 		// Set the request URL
 		$this->url = $url;
-		
+
 		// Set the default parameters
 		if ($default) $this->params($default);
-		
+
 		// Set the request parameters
 		if ($params) $this->params($params);
 	}
@@ -159,8 +159,8 @@ class Request
 	}
 
 	/**
-	 * Convert the request parameters into a query string, suitable for GET and
-	 * POST requests.
+	 * Convert the request parameters into a query string, suitable for GET
+	 * and POST requests.
 	 *
 	 *     $query = $request->as_query();
 	 *
@@ -237,7 +237,10 @@ class Request
 		$response = Core::remote($url, $options);
 
 		// check if it's a json string
-		if ($this->name === 'access' and strpos(trim($response), '{') === 0) $response = http_build_query(json_decode($response, true));
+		if ($this->name === 'access' and strpos(trim($response), '{') === 0)
+		{
+			$response = http_build_query(json_decode($response, true));
+		}
 
 		return $response;
 	}

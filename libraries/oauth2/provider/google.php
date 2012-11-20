@@ -28,7 +28,8 @@ class Google extends OAuth2_Provider
 	public $method = 'POST';
 
 	/**
-	 * @var  string  scope separator, most use "," but some like Google are spaces
+	 * @var  string  scope separator, most use "," but some like Google are
+	 *               spaces
 	 */
 	public $scope_seperator = ' ';
 
@@ -46,7 +47,7 @@ class Google extends OAuth2_Provider
 	{
 		$state = md5(uniqid(rand(), TRUE));
 		\Session::put('state', $state);
-		
+
 		$params = array(
 			'client_id'       => $this->client_id,
 			'redirect_uri'    => array_get($options, 'redirect_uri', $this->redirect_uri),
@@ -58,7 +59,7 @@ class Google extends OAuth2_Provider
 		);
 
 		$url = $this->url_authorize().'?'.http_build_query($params);
-		
+
 		return \Redirect::to($url);
 	}
 
@@ -66,14 +67,16 @@ class Google extends OAuth2_Provider
 	{
 		// Now make sure we have the default scope to get user data
 		$options['scope'] = array_merge(
-			
-			// We need this default feed to get the authenticated users basic information
+
+			// We need this default feed to get the authenticated users
+			// basic information
 			array('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'),
 
-			// And take either a string and array it, or empty array to merge into
+			// And take either a string and array it, or empty array to
+			// merge into
 			(array) array_get($options, 'scope', array())
 		);
-		
+
 		parent::__construct($options);
 	}
 
@@ -82,7 +85,7 @@ class Google extends OAuth2_Provider
 	*
 	* @param	string	The access code
 	* @return	object	Success or failure along with the response details
-	*/	
+	*/
 	public function access($code, $options = array())
 	{
 		if ($code === null)
@@ -98,9 +101,9 @@ class Google extends OAuth2_Provider
 		$request  = Request::make('resource', 'GET', 'https://www.googleapis.com/oauth2/v1/userinfo', array(
 			'access_token' => $token->access_token,
 		));
-		
+
 		$user     = json_decode($request->execute(), true);
-		
+
 		return array(
 			'uid'         => $user['email'],
 			'nickname'    => \Str::slug($user['name'], '-'),

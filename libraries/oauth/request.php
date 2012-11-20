@@ -100,16 +100,16 @@ class Request
 		// Set the request method
 		if ($method) $this->method = strtoupper($method);
 
-		// Separate the URL and query string, which will be used as additional
-		// default parameters
+		// Separate the URL and query string, which will be used as
+		// additional default parameters
 		list ($url, $default) = Core::parse_url($url);
 
 		// Set the request URL
 		$this->url = $url;
-		
+
 		// Set the default parameters
 		if ($default) $this->params($default);
-		
+
 		// Set the request parameters
 		if ($params) $this->params($params);
 
@@ -118,7 +118,7 @@ class Request
 		{
 			$this->params['oauth_version'] = Core::$version;
 		}
-		
+
 		// Set the timestamp of this request
 		if ($this->required('oauth_timestamp') and ! isset($this->params['oauth_timestamp']))
 		{
@@ -209,7 +209,8 @@ class Request
 	}
 
 	/**
-	 * Parameter getter and setter. Setting the value to `null` will remove it.
+	 * Parameter getter and setter. Setting the value to `null` will remove
+	 * it.
 	 *
 	 *     // Set the "oauth_consumer_key" to a new value
 	 *     $request->param('oauth_consumer_key', $key);
@@ -352,8 +353,8 @@ class Request
 	}
 
 	/**
-	 * Convert the request parameters into a query string, suitable for GET and
-	 * POST requests.
+	 * Convert the request parameters into a query string, suitable for GET
+	 * and POST requests.
 	 *
 	 *     $query = $request->as_query();
 	 *
@@ -406,7 +407,8 @@ class Request
 	}
 
 	/**
-	 * Sign the request, setting the `oauth_signature_method` and `oauth_signature`.
+	 * Sign the request, setting the `oauth_signature_method` and
+	 * `oauth_signature`.
 	 *
 	 * @param   Signature  signature
 	 * @param   Consumer   consumer
@@ -491,7 +493,7 @@ class Request
 
 			// Store the new headers
 			$options[CURLOPT_HTTPHEADER] = $headers;
-		} 
+		}
 
 		if ($this->method === 'POST')
 		{

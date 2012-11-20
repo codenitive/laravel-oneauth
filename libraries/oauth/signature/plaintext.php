@@ -15,12 +15,13 @@ use OneAuth\OAuth\Signature as OAuth_Signature,
 	OneAuth\OAuth\Request,
 	OneAuth\OAuth\Token;
 
-class Plaintext extends OAuth_Signature 
+class Plaintext extends OAuth_Signature
 {
 	protected $name = 'PLAINTEXT';
 
 	/**
-	 * Generate a plaintext signature for the request _without_ the base string.
+	 * Generate a plaintext signature for the request _without_ the base
+	 * string.
 	 *
 	 *     $sig = $signature->sign($request, $consumer, $token);
 	 *

@@ -15,12 +15,13 @@ use OneAuth\OAuth\Signature as OAuth_Signature,
 	OneAuth\OAuth\Request,
 	OneAuth\OAuth\Token;
 
-class Sha1 extends OAuth_Signature 
+class Sha1 extends OAuth_Signature
 {
 	protected $name = 'HMAC-SHA1';
 
 	/**
-	 * Generate a signed hash of the base string using the consumer and token
+	 * Generate a signed hash of the base string using the consumer and
+	 * token
 	 * as the signing key.
 	 *
 	 *     $sig = $signature->sign($request, $consumer, $token);

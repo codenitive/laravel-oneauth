@@ -22,7 +22,7 @@ use OneAuth\OAuth\Provider as OAuth_Provider,
 	OneAuth\OAuth\Request,
 	OneAuth\OAuth\Token;
 
-class Flickr extends OAuth_Provider 
+class Flickr extends OAuth_Provider
 {
 	public $name = 'flickr';
 
@@ -79,7 +79,8 @@ class Flickr extends OAuth_Provider
 	 */
 	public function access_token(Token\Request $token, Consumer $consumer, array $params = null)
 	{
-		// Create a new GET request for a request token with the required parameters
+		// Create a new GET request for a request token with the required
+		// parameters
 		$request = Request::make('access', 'GET', $this->url_access_token(), array(
 			'oauth_consumer_key' => $consumer->key,
 			'oauth_access_token' => $token->access_token,
@@ -92,12 +93,13 @@ class Flickr extends OAuth_Provider
 			$request->params($params);
 		}
 
-		// Sign the request using only the consumer, no token is available yet
+		// Sign the request using only the consumer, no token is available
+		// yet
 		$request->sign($this->signature, $consumer, $token);
 
 		// Create a response from the request
 		$response = $request->execute();
-		
+
 		// Store this token somewhere useful
 		return Token::make('access', array(
 			'access_token' => $response->param('oauth_token'),
@@ -105,7 +107,7 @@ class Flickr extends OAuth_Provider
 			'uid'          => $response->param($this->uid_key) ?: Input::get($this->uid_key),
 		));
 	}
-	
+
 	public function get_user_info(Token $token, Consumer $consumer)
 	{
 		// Create a new GET request with the required parameters
