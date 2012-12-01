@@ -92,4 +92,9 @@ Event::listen('orchestra.logged.in', function()
 	Event::fire('oneauth.sync', array(Auth::user()->id));
 });
 
+Event::listen('orchestra.logged.out', function()
+{
+	Session::forget('oneauth');
+});
+
 include_once Bundle::path('oneauth').'orchestra'.DS.'configure'.EXT;
