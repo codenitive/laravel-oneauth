@@ -87,12 +87,12 @@ Route::controller(array('oneauth::connect'));
 |
 */
 
-Event::listen('orchestra.logged.in', function()
+Event::listen('orchestra.auth: login', function()
 {
 	Event::fire('oneauth.sync', array(Auth::user()->id));
 });
 
-Event::listen('orchestra.logged.out', function()
+Event::listen('orchestra.auth: logout', function()
 {
 	Session::forget('oneauth');
 });
