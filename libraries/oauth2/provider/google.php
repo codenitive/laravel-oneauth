@@ -107,7 +107,7 @@ class Google extends OAuth2_Provider
 		return array(
 			'uid'         => $user['email'],
 			'nickname'    => \Str::slug($user['name'], '-'),
-			'name'        => $user['name'] . ' ' . $user['family_name'],
+			'name'        => $user['name'],
 			'email'       => $user['email'],
 			'location'    => null,
 			'image'       => isset($user['picture']) ? $user['picture'] : '',
