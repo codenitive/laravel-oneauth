@@ -2,14 +2,20 @@
 
 ## Contents
 
+- [OneAuth 0.1.6](#0.1.6)
 - [OneAuth 0.1.5](#0.1.5)
 - [OneAuth 0.1.4](#0.1.4)
 - [OneAuth 0.1.3](#0.1.3)
 - [OneAuth 0.1.2](#0.1.2)
 - [OneAuth 0.1.1](#0.1.1)
 
+<a name="0.1.6"></a>
+## OneAuth 0.1.6
 
-<a name-"0.1.5"></a>
+- Fixed Google OAuth 2 Provider not returning proper name.
+- Fixed Google OAuth 2 Provider not always provide profile image.
+
+<a name="0.1.5"></a>
 ## OneAuth 0.1.5
 
 - Bugfixes on LinkedIn request.
@@ -18,19 +24,19 @@
 - Add Unit Testing for OneAuth.
 
 
-<a name-"0.1.4"></a>
+<a name="0.1.4"></a>
 ## OneAuth 0.1.4
 
 - Event 'oneauth.logged' should use unserialized array for `$user_data['token']`.
 
-<a name-"0.1.3"></a>
+<a name="0.1.3"></a>
 ## OneAuth 0.1.3
 
 - Fixed user profile on LinkedIn with setting set to private.
 - Fixed error when unserializing an undefined value when session is null.
 - Fixed incompleted Github profile.
 
-<a name-"0.1.2"></a>
+<a name="0.1.2"></a>
 ## OneAuth 0.1.2
 
 - Fixed API changes on Dropbox Provider.
