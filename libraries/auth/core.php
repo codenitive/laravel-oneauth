@@ -48,6 +48,7 @@ class Core
 			$client = new Client(array(
 				'uid'      => $user_data['info']['uid'],
 				'provider' => $user_data['provider'],
+				'user_id'  => 0,
 			));
 		}
 

@@ -11,7 +11,7 @@ class OneAuth_Create_Clients {
 		Schema::create('oneauth_clients', function ($table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();
+			$table->integer('user_id')->unsigned()->nullable();
 			$table->string('provider', 50);
 			$table->string('uid', 255);
 			$table->string('access_token', 500)->nullable();
