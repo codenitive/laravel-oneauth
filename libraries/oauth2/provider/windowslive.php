@@ -21,7 +21,7 @@ class Windowslive extends OAuth2_Provider
 	 */
 	public $name = 'windowslive';
 
-	protected $method = 'POST';
+	protected $method = 'POST_QUERY';
 
 	public function __construct(array $options = array())
 	{
@@ -44,14 +44,14 @@ class Windowslive extends OAuth2_Provider
 	public function url_authorize()
 	{
 		// return the authorise URL
-		return 'https://oauth.live.com/authorize';
+		return 'https://login.live.com/oauth20_authorize.srf';
 	}
 
 	// access token url
 	public function url_access_token()
 	{
 		// return the access token URL
-		return 'https://oauth.live.com/token';
+		return 'https://login.live.com/oauth20_token.srf';
 	}
 
 	// get basic user information
@@ -74,7 +74,7 @@ class Windowslive extends OAuth2_Provider
 		return array(
 			'uid'      => $user->id,
 			'name'     => $user->name,
-			'emial'    => isset($user->emails->preferred) ? $user->emails->preferred : null,
+			'email'    => isset($user->emails->preferred) ? $user->emails->preferred : null,
 			'nickname' => \Str::slug($user->name, '-'),
 			'locale'   => $user->locale,
 			'urls'     => array(
