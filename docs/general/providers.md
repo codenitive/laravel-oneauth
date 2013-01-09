@@ -15,5 +15,5 @@
 	- Instagram
 	- Paypal
 	- SoundCloud
-	- WindowsLice
+	- WindowsLive
 * OpenID *(To be added)*

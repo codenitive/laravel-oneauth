@@ -80,7 +80,7 @@ return array(
 			'secret' => '',
 		),
 
-		'windowlive' => array(
+		'windowslive' => array(
 			'id'     => '',
 			'secret' => '',
 		),

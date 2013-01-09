@@ -19,51 +19,51 @@ Config::set('oneauth::urls', array(
 ));
 
 Orchestra\Extension\Config::map('oneauth', array(
-	'basecamp_id'       => 'oneauth::api.providers.basecamp.id',
-	'basecamp_secret'   => 'oneauth::api.providers.basecamp.secret',
+	'basecamp_id'        => 'oneauth::api.providers.basecamp.id',
+	'basecamp_secret'    => 'oneauth::api.providers.basecamp.secret',
 
-	'dropbox_key'       => 'oneauth::api.providers.dropbox.key',
-	'dropbox_secret'    => 'oneauth::api.providers.dropbox.secret',
+	'dropbox_key'        => 'oneauth::api.providers.dropbox.key',
+	'dropbox_secret'     => 'oneauth::api.providers.dropbox.secret',
 
-	'facebook_id'       => 'oneauth::api.providers.facebook.id',
-	'facebook_secret'   => 'oneauth::api.providers.facebook.secret',
-	'facebook_scope'    => 'oneauth::api.providers.facebook.scope',
+	'facebook_id'        => 'oneauth::api.providers.facebook.id',
+	'facebook_secret'    => 'oneauth::api.providers.facebook.secret',
+	'facebook_scope'     => 'oneauth::api.providers.facebook.scope',
 
-	'flickr_key'        => 'oneauth::api.providers.flickr.key',
-	'flickr_secret'     => 'oneauth::api.providers.flickr.secret',
+	'flickr_key'         => 'oneauth::api.providers.flickr.key',
+	'flickr_secret'      => 'oneauth::api.providers.flickr.secret',
 
-	'foursquare_id'     => 'oneauth::api.providers.foursquare.id',
-	'foursquare_secret' => 'oneauth::api.providers.foursquare.secret',
+	'foursquare_id'      => 'oneauth::api.providers.foursquare.id',
+	'foursquare_secret'  => 'oneauth::api.providers.foursquare.secret',
 
-	'github_id'         => 'oneauth::api.providers.github.id',
-	'github_secret'     => 'oneauth::api.providers.github.secret',
+	'github_id'          => 'oneauth::api.providers.github.id',
+	'github_secret'      => 'oneauth::api.providers.github.secret',
 
-	'google_id'         => 'oneauth::api.providers.google.id',
-	'google_secret'     => 'oneauth::api.providers.google.secret',
+	'google_id'          => 'oneauth::api.providers.google.id',
+	'google_secret'      => 'oneauth::api.providers.google.secret',
 
-	'instagram_id'      => 'oneauth::api.providers.instagram.id',
-	'instagram_secret'  => 'oneauth::api.providers.instagram.secret',
+	'instagram_id'       => 'oneauth::api.providers.instagram.id',
+	'instagram_secret'   => 'oneauth::api.providers.instagram.secret',
 
-	'linkedin_key'      => 'oneauth::api.providers.linkedin.key',
-	'linkedin_secret'   => 'oneauth::api.providers.linkedin.secret',
+	'linkedin_key'       => 'oneauth::api.providers.linkedin.key',
+	'linkedin_secret'    => 'oneauth::api.providers.linkedin.secret',
 
-	'paypal_id'         => 'oneauth::api.providers.paypal.id',
-	'paypal_secret'     => 'oneauth::api.providers.paypal.secret',
+	'paypal_id'          => 'oneauth::api.providers.paypal.id',
+	'paypal_secret'      => 'oneauth::api.providers.paypal.secret',
 
-	'soundcloud_id'     => 'oneauth::api.providers.soundcloud.id',
-	'soundcloud_secret' => 'oneauth::api.providers.soundcloud.secret',
+	'soundcloud_id'      => 'oneauth::api.providers.soundcloud.id',
+	'soundcloud_secret'  => 'oneauth::api.providers.soundcloud.secret',
 
-	'tumblr_key'        => 'oneauth::api.providers.tumblr.key',
-	'tumblr_secret'     => 'oneauth::api.providers.tumblr.secret',
+	'tumblr_key'         => 'oneauth::api.providers.tumblr.key',
+	'tumblr_secret'      => 'oneauth::api.providers.tumblr.secret',
 
-	'twitter_key'       => 'oneauth::api.providers.twitter.key',
-	'twitter_secret'    => 'oneauth::api.providers.twitter.secret',
+	'twitter_key'        => 'oneauth::api.providers.twitter.key',
+	'twitter_secret'     => 'oneauth::api.providers.twitter.secret',
 
-	'vimeo_key'         => 'oneauth::api.providers.vimeo.key',
-	'vimeo_secret'      => 'oneauth::api.providers.vimeo.secret',
+	'vimeo_key'          => 'oneauth::api.providers.vimeo.key',
+	'vimeo_secret'       => 'oneauth::api.providers.vimeo.secret',
 
-	'windowlive_id'     => 'oneauth::api.providers.windowlive.id',
-	'windowlive_secret' => 'oneauth::api.providers.windowlive.secret',
+	'windowslive_id'     => 'oneauth::api.providers.windowslive.id',
+	'windowslive_secret' => 'oneauth::api.providers.windowslive.secret',
 
 ));
 

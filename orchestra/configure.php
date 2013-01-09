@@ -104,10 +104,10 @@ Event::listen('orchestra.form: extension.oneauth', function ($config, $form)
 			$fieldset->control('input:text', 'Vimeo Secret', 'vimeo_secret');
 		});
 
-		$form->fieldset('WindowLive OAuth2', function ($fieldset)
+		$form->fieldset('WindowsLive OAuth2', function ($fieldset)
 		{
-			$fieldset->control('input:text', 'WindowLive ID', 'windowlive_id');
-			$fieldset->control('input:text', 'WindowLive Secret', 'windowlive_secret');
+			$fieldset->control('input:text', 'WindowsLive ID', 'windowslive_id');
+			$fieldset->control('input:text', 'WindowsLive Secret', 'windowslive_secret');
 		});
 	});
 });

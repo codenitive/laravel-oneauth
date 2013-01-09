@@ -44,7 +44,7 @@ abstract class Strategy
 		'tumblr'     => 'OAuth',
 		'twitter'    => 'OAuth',
 		'vimeo'      => 'OAuth',
-		'windowlive' => 'OAuth2',
+		'windowslive' => 'OAuth2',
 	);
 
 	public static function add($type, $name)
