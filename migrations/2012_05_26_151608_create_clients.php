@@ -14,13 +14,12 @@ class OneAuth_Create_Clients {
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->string('provider', 50);
 			$table->string('uid', 255);
-			$table->string('access_token', 760)->nullable();
+			$table->text('access_token')->nullable();
 			$table->string('secret', 500)->nullable();
 			$table->string('refresh_token', 500)->nullable();
 			$table->integer('expires')->defaults(0)->nullable();
 
 			$table->timestamps();
-			$table->index('access_token');
 			$table->index('user_id');
 			$table->unique(array('provider', 'uid'));
 		});
