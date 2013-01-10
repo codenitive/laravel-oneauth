@@ -14,6 +14,10 @@
 
 - Fixed Google OAuth 2 Provider not returning proper name.
 - Fixed Google OAuth 2 Provider not always provide profile image.
+- Fixed WindowsLive OAuth 2 Provider implementation.
+- Add event on user login, so you don't need to fire and event when user is logged-in
+- Add event on user logout, to clear oneauth session data.
+- Update implementation for Orchestra Platform to allow smooth registration process.
 
 <a name="0.1.5"></a>
 ## OneAuth 0.1.5
