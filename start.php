@@ -44,6 +44,15 @@ Event::listen('oneauth.sync', function ($user_id)
 	return OneAuth\Auth\Core::sync($user_id);
 });
 
+
+
+Event::listen('laravel.auth: login', function()
+{
+	$user = IoC::resolve('oneauth.driver: auth.user');
+
+	Event::fire('oneauth.sync', array($user->id));
+});
+
 Event::listen('laravel.auth: logout', function ()
 {
 	Session::forget('oneauth');

@@ -89,12 +89,22 @@ Route::controller(array('oneauth::connect'));
 
 Event::listen('orchestra.auth: login', function()
 {
-	Event::fire('oneauth.sync', array(Auth::user()->id));
+	$user = IoC::resolve('oneauth.driver: auth.user');
+
+	Event::fire('oneauth.sync', array($user->id));
 });
 
-Event::listen('orchestra.auth: logout', function()
+IoC::register('orchestra.user: register', function ()
 {
-	Session::forget('oneauth');
+	$user = new Orchestra\Model\User;
+
+	if ( ! is_null($session = OneAuth\Auth\Core::session()))
+	{
+
+	}
+
+	return $user;
+
 });
 
 include_once Bundle::path('oneauth').'orchestra'.DS.'configure'.EXT;
