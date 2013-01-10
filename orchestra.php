@@ -100,7 +100,8 @@ IoC::register('orchestra.user: register', function ()
 
 	if ( ! is_null($session = OneAuth\Auth\Core::session()))
 	{
-
+		$user->fullname = $session['info']['name'] ?: '';
+		$user->email    = $session['info']['email'] ?: '';
 	}
 
 	return $user;
