@@ -5,7 +5,7 @@ php:
   - "5.3"
 
 before_install:
-  - cd ~/builds
+  - cd ../../
   - git clone git://github.com/laravel/laravel.git
   - mv ./codenitive/laravel-oneauth ./laravel/bundles/oneauth
   - echo "<?php return array('oneauth' => array('auto' => true));" > ./laravel/application/bundles.php
