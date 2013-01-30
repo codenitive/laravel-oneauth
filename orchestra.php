@@ -105,7 +105,6 @@ IoC::register('orchestra.user: register', function ()
 	}
 
 	return $user;
-
 });
 
 include_once Bundle::path('oneauth').'orchestra'.DS.'configure'.EXT;
