@@ -11,4 +11,4 @@ before_install:
   - echo "<?php return array('oneauth' => array('auto' => true));" > ./laravel/application/bundles.php
   - cd ./laravel
 
-script: "php artisan test oneauth"
+script: "phpunit --coverage-text --configuration bundles/oneauth/phpunit.xml"
