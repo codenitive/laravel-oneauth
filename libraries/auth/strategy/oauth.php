@@ -25,7 +25,13 @@ class Oauth extends Auth_Strategy
 		$provider = Provider::make($this->provider);
 		
 		// Create the URL to return the user to
-		$callback = array_get($this->config, 'callback') ?: \URL::to(\Config::get('oneauth::urls.callback', 'connect/callback'));
+		$callback = array_get($this->config, 'callback') ?: \URL::to(
+			\Config::get('oneauth::urls.callback', 'connect/callback'),
+			null,
+			false,
+			false
+		);
+		
 		$callback = rtrim($callback, '/').'/'.$this->provider;
 		
 		// Add the callback URL to the consumer

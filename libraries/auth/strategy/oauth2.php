@@ -24,8 +24,15 @@ class Oauth2 extends Auth_Strategy
 		// Grab a callback from the config
 		if ($provider->callback === null)
 		{
-			$callback           = \URL::to(\Config::get('oneauth::urls.callback', 'connect/callback'));
-			$callback           = rtrim($callback, '/').'/'.$this->provider;
+			$callback = \URL::to(
+				\Config::get('oneauth::urls.callback', 'connect/callback'),
+				null,
+				false,
+				false
+			);
+			
+			$callback = rtrim($callback, '/').'/'.$this->provider;
+
 			$provider->callback = $callback;
 		}
 		
