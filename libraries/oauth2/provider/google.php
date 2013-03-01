@@ -55,7 +55,7 @@ class Google extends OAuth2_Provider
 			'scope'           => is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
 			'response_type'   => 'code',
 			'access_type'     => 'offline',
-			'approval_prompt' => 'force',
+			'approval_prompt' => 'auto',
 		);
 
 		$url = $this->url_authorize().'?'.http_build_query($params);
