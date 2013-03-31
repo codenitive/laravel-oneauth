@@ -25,8 +25,8 @@ class Core
 		{
 			throw new Exception(__METHOD__.": Unable to redirect using {$type} type.");
 		}
-
-		return Redirect::to($path);
+		
+		return Redirect::to(value($path));
 	}
 
 	/**
