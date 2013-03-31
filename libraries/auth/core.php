@@ -25,6 +25,10 @@ class Core
 		{
 			throw new Exception(__METHOD__.": Unable to redirect using {$type} type.");
 		}
+		
+		if (is_callable($path)) {
+			$path = $path();
+		}
 
 		return Redirect::to($path);
 	}
