@@ -10,7 +10,7 @@
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-use \Redirect, \Session, \URL;
+use \Closure, \Redirect, \Session, \URL;
 
 abstract class Provider
 {

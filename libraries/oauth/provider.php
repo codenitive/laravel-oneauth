@@ -10,7 +10,7 @@
  * @since      3.0.7
  */
 
-use \Input;
+use \Closure, \Input;
 
 abstract class Provider
 {
