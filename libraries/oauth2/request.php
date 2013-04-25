@@ -199,6 +199,12 @@ class Request
 	{
 		// Get the URL of the request
 		$url = $this->url;
+		
+		if ( ! isset($options[CURLOPT_USERAGENT]))
+		{
+			// Set the default user agent. GitHub requires one.
+			$options[CURLOPT_USERAGENT] = "OneAuth - https://github.com/codenitive/laravel-oneauth";
+		}
 
 		if ( ! isset($options[CURLOPT_CONNECTTIMEOUT]))
 		{
