@@ -46,7 +46,7 @@ class Twitter extends OAuth_Provider
 	public function get_user_info(Token $token, Consumer $consumer)
 	{		
 		// Create a new GET request with the required parameters
-		$request = Request::make('resource', 'GET', 'http://api.twitter.com/1.1/users/lookup.json', array(
+		$request = Request::make('resource', 'GET', 'https://api.twitter.com/1.1/users/lookup.json', array(
 			'oauth_consumer_key' => $consumer->key,
 			'oauth_token'        => $token->access_token,
 			'user_id'            => $token->uid,
@@ -67,7 +67,7 @@ class Twitter extends OAuth_Provider
 			'description' => $user->description,
 			'urls'        => array(
 				'website' => $user->url,
-				'twitter' => 'http://twitter.com/'.$user->screen_name,
+				'twitter' => 'https://twitter.com/'.$user->screen_name,
 			),
 		);
 	}
