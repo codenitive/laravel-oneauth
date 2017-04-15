@@ -27,6 +27,9 @@ class Core extends OAuth_Core
 		// The transfer must always be returned
 		$options[CURLOPT_RETURNTRANSFER] = TRUE;
 
+		//User Agent is now mandatory for Github
+		$options[CURLOPT_USERAGENT] = $_SERVER['HTTP_USER_AGENT'];
+		
 		// Open a new remote connection
 		$remote = curl_init($url);
 
